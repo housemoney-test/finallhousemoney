@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>FinalHouseMoney | 入出金登録</title>
+</head>
+<body>
+	<div class="changeButton">
+		<button type="button" id="incomeButton" onclick="clickIncome()">入金</button>
+		<button type="button" id="spendingButton" onclick="clickSpending()">出金</button>
+	</div>
+
+		<div class="form-body">
+			<form id="incomeForm">
+				<div class="form-row">
+					<label for="title">カテゴリー</label>
+					<input type="text" />
+				</div>
+
+				<div class="form-row">
+					<label for="body">入金額</label>
+					<input type="text" />
+				</div>
+
+				<input type="submit" value="登録">
+			</form>
+
+			<form id="spendingForm">
+				<div class="form-row">
+					<label for="title">カテゴリー</label>
+					<input type="text" />
+				</div>
+
+				<div class="form-row">
+					<label for="body">出金額</label>
+					<input type="text" />
+				</div>
+
+				<input type="submit" value="登録">
+			</form>
+		</div>
+
+	<script type="text/javascript" th:src="@{/js/paymentButton.js}"></script>
+</body>
+</html>
