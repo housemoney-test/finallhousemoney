@@ -12,5 +12,6 @@ public interface UserMapper {
 	List<User> findAll();
 
 	int create(User entity);
+	User login(User entity);
 
 }

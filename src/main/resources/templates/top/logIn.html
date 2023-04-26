@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>FinalHouseMoney | ログイン</title>
+</head>
+<body>
+	<header>
+		<p>FinalHouseMoney</p>
+	</header>
+
+	<!--	コントローラの/loginにリクエスト送信-->
+	<form th:action="@{/login}" th:object="${loginUserForm}" method="POST">
+
+		<div class="container">
+			<div class="form-body">
+
+				<div class="form-row">
+					<label for="loginId">ユーザー名</label>
+					<input type="text" th:field="*{name}"  />
+<!--					<div class="errorMessages feedback-area invalid-feedback" th:if="${#fields.hasErrors('name')}"-->
+<!--						th:errors="*{id}">-->
+<!--					</div>-->
+					<div class="form-row">
+						<label for="password">パスワード</label>
+						<input type="password" th:field="*{password}" id="password" />
+						<div class="errorMessages feedback-area invalid-feedback"
+							th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+					</div>
+					<div class="errorMessages feedback-area invalid-feedback" th:if="${#fields.hasErrors('loginErr')}"
+						th:errors="*{loginErr}"></div>
+
+					<input type="submit" value="Log in">
+	</form>
+
+
+
+
+
+
+
+	</div>
+
+	</div>
+
+	<footer>
+		<p>202303 KAAYE</p>
+	</footer>
+</body>
+
+</html>
