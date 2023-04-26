@@ -8,18 +8,32 @@
 			id,
 			name,
 			password
+			phone_number AS phoneNumber
 		FROM
 			users
 	</select>
+	<!-- 新規登録 -->
 	<insert id="create">
 		INSERT INTO users(
 			id,
 			name,
-			password
+			password,
+			phone_number AS phoneNumber
 		) VALUES (
 			#{id},
 			#{name},
-			#{password}
+			#{password},
+			#{phoneNumber}
 		)
 	</insert>
+	<!--ログイン -->
+	<select id="login" resultType="com.example.demo.entity.User">
+		SELECT
+			*,
+			id
+		FROM
+			users
+		WHERE
+			id=#{id}
+	</select>
 </mapper>
