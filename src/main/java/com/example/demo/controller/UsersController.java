@@ -19,10 +19,18 @@ public class UsersController {
 	@Autowired
 	private GetAllUsersService getAllUsersService;
 
-	@GetMapping
+	@GetMapping("/index")
 	public String index(Model model) {
 		List<User> users = getAllUsersService.getAllUsers();
 		model.addAttribute("users", users);
 		return "users/index";
 	}
+	
+	@GetMapping("/home")
+	public String home(Model model) {
+
+		return "users/home";
+	}
+	
+	
 }
