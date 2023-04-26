@@ -25,6 +25,16 @@ public class TopController {
 	public String home(Model model) {
 		return "top/top";
 	}
+	
+	@GetMapping("/login")
+	public String login(Model model) {
+		return "top/login";
+	}
+	
+	@GetMapping("/signUp")
+	public String signUp(Model model) {
+		return "top/signUp";
+	}
 
 	@GetMapping("/login")
 	public String login(Model model) {
