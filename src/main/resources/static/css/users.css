@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+.blurry-background{
+	position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 600px;
+  background-image: url(images/23630342.jpg);
+  background-size: cover;
+  background-position: center;
+  filter: blur(5px);
+  z-index: -1;
+}
+
+.card {
+	display: none;
+	width: 50%;
+	height: 500px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	 transform: translate(-50%, 10%);
+}
+
+.card-img-top{
+	size: cover;
+}
+
+.piggy {
+	width:120px;
+	height:120px;
+	float: right;
+	margin-right: 30px;
+}
