@@ -1,14 +1,35 @@
 @charset "UTF-8";
 
-.right-contents {
-	text-align: right;
-	margin: 1rem 1rem 0 0;
-}
-
+/*general*/
 .wrapper{
     max-width: 80%;
-    margin: 0 auto;
+    margin: 1rem auto;
     color: #666;
+    padding-top: 1rem; 
+}
+.upperPart {
+	position: relative;
+	height: 50px;
+}
+#moveButton {
+	float: right;
+	font-size: 1rem;
+	font-weight: 700;
+	line-height: 1.5;
+	position: relative;
+	padding: 1rem 2rem;
+	user-select: none;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	letter-spacing: 0.1em;
+	border-radius: 0.5rem;
+	color: black;
+	background-color: #EDFFBE;
+}
+/*index.html*/
+.todayPayment {
+	float: left;
 }
 #calendarHeader {
     text-align: center;

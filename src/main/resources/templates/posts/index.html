@@ -3,12 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <title>FinalHouseMoney | 日記一覧</title>
-<link href="posts.css" rel="styleSheet">
+<link th:href="@{/css/posts.css}" rel="styleSheet" type="text/css">
 </head>
 <body>
 	<div class="wrapper">
-		<div class="right-contents">
-			<button type="button">日記登録</button>
+		<div class="upperPart">
+			<h3 class="todayPayment">今日の出費: <!--thymeleaf spending.amount--></h3>
+			<a th:href="@{posts/create}" id="moveButton">日記をつける</a>
 		</div>
 
     	<h1 id="calendarHeader"></h1>
@@ -17,13 +18,11 @@
         	<button id="prev" onclick="prev()">‹</button>
         	<button id="next" onclick="next()">›</button>
     	</div>
-<!--TODOデザイン修正(出費の表示欄と日記のURL)-->
-		<h1>今日の出費</h1>
-		<h2>ここに今日の出費を表示します</h2>
-		<a th:href="@{posts/create}" >日記をつける</a>
+
 		<div id="calendar"></div>
 	</div>
 	
     <script type="text/javascript" th:src="@{/js/calendar.js}"></script>
 </body>
 </html>
+
