@@ -25,15 +25,27 @@
 				<input type="submit" value="登録">
 			</form>
 
-			<form id="spendingForm">
+			<form id="spendingForm" th:action="@{/payments/create}" th:object="${form}" th:method="POST">
+				<div th:if="${validationError}" th:each="error : ${validationError}">
+			      <label class="text-danger" th:text="${error}"></label>
+			    </div>
 				<div class="form-row">
 					<label for="title">カテゴリー</label>
-					<input type="text" />
+					<select type="text" th:field="*{categoryId}">
+						<option th:value="1">食費</option>
+						<option th:value="2">生活費</option>
+						<option th:value="3">雑費</option>
+					</select>
 				</div>
 
 				<div class="form-row">
 					<label for="body">出金額</label>
-					<input type="text" />
+					<input type="text" th:field="*{amount}" />
+				</div>
+				
+				<div class="form-row">
+					<label for="body">ユーザーID</label>
+					<input type="text" th:field="*{userId}" />
 				</div>
 
 				<input type="submit" value="登録">
