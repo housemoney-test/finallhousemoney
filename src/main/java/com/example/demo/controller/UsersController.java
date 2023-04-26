@@ -28,9 +28,9 @@ public class UsersController {
 	
 	@GetMapping("/home")
 	public String home(Model model) {
-
 		return "users/home";
 	}
+	
 	
 	
 }
