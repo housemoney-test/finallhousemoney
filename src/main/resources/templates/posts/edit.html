@@ -7,25 +7,27 @@
 </head>
 <body>
 
-	<div class="container">
+	<div class="wrapper">
+		<h2 class="htmlTitle">日記をかきなおす</h2>
+		
 		<div class="form-body">
 			<form>
 				<div class="form-row">
-					<label for="title">Title</label>
+					<label for="title">簡潔に書くと？</label>
 					<input type="text" />
 				</div>
 
 				<div class="form-row">
-					<label for="body">Contetns</label>
-					<input type="text" />
+					<label for="body">詳しく書くと？</label>
+					<textarea name="contents" cols="80" rows="5"></textarea>
 				</div>
 
-				<input type="submit" value="編集">
+				<div class="form-button">
+					<input type="submit" value="ほぞんする">
+				</div>
 			</form>
-
-			<button class="button">削除</button>
 		</div>
+		<button class="button">削除</button>
 	</div>
-
 </body>
 </html>

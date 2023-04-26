@@ -2,28 +2,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>HouseMoney003 | 日記登録</title>
+<title>FinalHouseMoney | 日記登録</title>
 <link th:href="@{/css/posts.css}" rel="styleSheet" type="text/css">
 </head>
-</head>
 <body>
-
+	
 	<div class="wrapper">
+		<h2 class="htmlTitle">日記をかく</h2>
+		
 		<div class="form-body">
 			<form>
 				<div class="form-row">
-					<label for="title">Title</label>
+					<label for="title">簡潔に書くと？</label>
 					<input type="text" />
 				</div>
 
 				<div class="form-row">
-					<label for="body">Contetns</label>
-					<input type="text" />
+					<label for="body">詳しく書くと？</label>
+					<textarea name="contents" cols="80" rows="5"></textarea>
 				</div>
 
-				<input type="submit" value="登録">
+				<div class="form-button">
+					<input type="submit" value="ほぞんする">
+				</div>
 			</form>
-
+			<div>
+				<a th:href="@{/posts}" class="moveButton">日記一覧に戻る</a>
+			</div>
 		</div>
 	</div>
 
