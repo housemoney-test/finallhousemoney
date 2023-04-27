@@ -41,7 +41,7 @@ public class TopController {
 
 	@PostMapping("/login")
 	public String login( @ModelAttribute("loginUserForm") LoginUserForm loginUserForm,
-			BindingResult result, Model model) {
+			BindingResult result, Model model, HttpSession session) {
 		
 		//loginUserFormのpassを暗号化
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -56,7 +56,10 @@ public class TopController {
 
 		//パスが一致している場合
 		if (loginUser != null && encoder.matches(loginUserForm.getPassword(), loginUser.getPassword())) {
-			return "users/home";
+			
+			//セッションにユーザー情報を保持する
+			session.setAttribute("loginUserForm", loginUserForm);
+			return "redirect:/users/home";
 
 		} else {
 			// falseの場合、ログイン画面に戻る

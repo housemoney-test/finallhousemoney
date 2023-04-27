@@ -1,31 +1,37 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>FinalHouseMoney</title>
-<link th:href="@{/css/style.css}" rel="styleSheet">
+	<meta charset="UTF-8">
+	<title>FinalHouseMoney</title>
+	<link th:href="@{/css/style.css}" rel="styleSheet">
 </head>
+
 <body>
 	<header>
 		<p>FinalHouseMoney</p>
 	</header>
-	
+
 	<div class="container">
 		<div class="home_box">
 			<div>
 				<div class="row">
+
+					<p>ユーザー名: <span th:text="${createUserForm.name}">ユーザー名</span></p>
+					<p>パスワード: <span th:text="${createUserForm.password}">パスワード</span></p>
+
 					<h3>今月の収支</h3>
 				</div>
 				<div>
-					<a th:href="@{/payments/create}">入出金登録</a> 
+					<a th:href="@{/payments/create}">入出金登録</a>
 				</div>
 				<div>
 					<!--
 					<a th:href="" type="button">固定費登録</a>
-					--> 
+					-->
 				</div>
 				<div>
-					<a th:href="@{/posts}">日記</a> 
+					<a th:href="@{/posts}">日記</a>
 				</div>
 			</div>
 
@@ -82,4 +88,5 @@
 		<p>202303 KAAYE</p>
 	</footer>
 </body>
+
 </html>
