@@ -228,25 +228,33 @@
     }
 }
 
-@media screen and (max-width: 720px) {
-  .logo {
-    transform: scale(0.3);
-    margin-top: 60px;
-  }
+@media screen and (max-width: 1440px) {
+	.switch-left {
+		transform: translate(calc(30vw - 217px), calc(45vh - 225px));
+	}
+	.switch-right {
+		transform: translate(calc(43vw - 217px), calc(45vh - 225px));
+	}
+	.nintendo-text {
+		transform: translate(calc(22vw - 288px), calc(10vh - 50px));
+	}
+	
+	@-webkit-keyframes switch-left-animation {
+     0% {transform: translate(calc(30vw - 217px), calc(45vh - 225px));}
+     73% {transform: translate(calc(30vw - 217px), calc(45vh - 225px));}
+     85% {transform: translate(calc(30vw - 217px), calc(45vh - 195px));}
+    }
+
+    @-webkit-keyframes switch-right-animation {
+      0% {transform: translate(calc(43vw - 217px), calc(45vh - 310px));}
+      25% {transform: translate(calc(43vw - 217px), calc(45vh - 310px));}
+      50% {transform: translate(calc(43vw - 217px), calc(45vh - 325px));}
+      65% {transform: translate(calc(43vw - 217px), calc(45vh - 325px));}
+      85% {transform: translate(calc(43vw - 217px), calc(45vh - 195px));}
+    }
 }
 
-@media screen and (max-width: 480px) {
-  .logo {
-    transform: scale(0.5);
-    margin-top: 45px;
-  }
-}
 
-@media screen and (max-height: 420px) {
-  .logo {
-    transform: scale(0.45);
-    margin-top: 65px;
-  }
-}
+
 
 
