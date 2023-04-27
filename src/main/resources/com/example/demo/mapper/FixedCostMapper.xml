@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.FixedCostMapper">
+	<select id="findAll" resultType="com.example.demo.entity.FixedCost">
+		SELECT
+			fixed_costs.id AS id,
+			category_id,
+			amount,
+	<!--			spending_categories.id AS category_id,-->
+	<!--			spending_categories.category_name AS category_name,-->
+			user_id
+		FROM
+			fixed_costs
+	<!--		INNER JOIN fixed_cost_categories ON fixed_costs.category_id = fixed_cost_categories.id-->
+	<!--		INNER JOIN positions ON users.position_id=positions.id-->
+	</select>
+	<select id="findById" resultType="com.example.demo.entity.FixedCost">
+		SELECT
+		 	*
+		FROM
+			fixed_costs
+		WHERE 
+			id = #{id}
+	</select>
+	<insert id="create">
+		INSERT INTO fixed_costs(
+			id,
+			category_id,
+			amount,
+			user_id
+		) VALUES (
+			#{id},
+			#{categoryId},
+			#{amount},
+			#{userId}
+		)
+	</insert>
+	<update id="edit">
+		UPDATE fixed_costs SET
+			category_id = #{categoryId},
+			amount = #{amount},
+			user_id = #{userId},
+			updated_at = NOW()
+		WHERE
+			id = #{id}
+	</update>
+</mapper>

@@ -14,12 +14,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.entity.FixedCost;
 import com.example.demo.entity.Spending;
 import com.example.demo.form.CreateSpendingForm;
+import com.example.demo.form.EditFixedCostForm;
 import com.example.demo.form.EditSpendingForm;
 import com.example.demo.service.CreateSpendingService;
+import com.example.demo.service.EditFixedCostService;
 import com.example.demo.service.EditSpendingService;
+import com.example.demo.service.FindFixedCostService;
 import com.example.demo.service.FindSpendingService;
+import com.example.demo.service.GetAllFixedCostsService;
 import com.example.demo.service.GetAllSpendingsService;
 
 import jakarta.validation.Valid;
@@ -40,6 +45,22 @@ public class PaymentsController {
 	
 	@Autowired
 	private GetAllSpendingsService getAllSpendingsService;
+	
+	@Autowired
+	private FindFixedCostService findFixedCostService;
+	
+	@Autowired
+	private EditFixedCostService editFixedCostService;
+	
+	@Autowired
+	private GetAllFixedCostsService getAllFixedCostsService;
+	
+	@GetMapping("index")
+	public String index(Model model) {
+		List<FixedCost> fixedCosts = getAllFixedCostsService.getAllFixedCosts();
+		model.addAttribute("fixedCosts", fixedCosts);
+		return "payments/index";
+	}
 	
 	
 	@GetMapping("/create")
@@ -85,6 +106,35 @@ public class PaymentsController {
         }
 		model.addAttribute("spendings", spendings);
 		editSpendingService.edit(editSpendingForm);
+		return "redirect:/users/index";
+	}
+	
+	@GetMapping("/fixed")
+	public String edit(@RequestParam int id, EditFixedCostForm editFixedCostForm, Model model) {
+		
+		List<FixedCost> fixedCosts = getAllFixedCostsService.getAllFixedCosts();
+		model.addAttribute("fixedCosts", fixedCosts);
+		
+		//FixedCost型にgetFindByIdの戻り値を格納
+	    FixedCost fixedCost = findFixedCostService.getFindById(id);
+	    //fixedCost型にFixedCost型の情報を入れかえる
+	    editFixedCostForm.setId(fixedCost.getId());
+	    editFixedCostForm.setCategoryId(fixedCost.getCategoryId());
+	    editFixedCostForm.setAmount(fixedCost.getAmount());
+	    editFixedCostForm.setUserId(fixedCost.getUserId());
+        model.addAttribute("editFixedCostForm", editFixedCostForm);
+		return "payments/fixed";
+	}
+	
+	@PostMapping("/fixed")
+	public String edit(@Valid @ModelAttribute("editFixedForm") EditFixedCostForm editFixedCostForm, BindingResult result, Model model) {
+		List<FixedCost> fixedCosts = getAllFixedCostsService.getAllFixedCosts();
+		if (result.hasErrors()) {
+            model.addAttribute("editDixedCostForm", editFixedCostForm);
+            return "redirect:/payments/fixed";
+        }
+		model.addAttribute("fixedCosts", fixedCosts);
+		editFixedCostService.edit(editFixedCostForm);
 		return "redirect:/users/index";
 	}
 }
