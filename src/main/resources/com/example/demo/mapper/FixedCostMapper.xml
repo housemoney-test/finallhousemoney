@@ -2,30 +2,30 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo.mapper.SpendingMapper">
-	<select id="findAll" resultType="com.example.demo.entity.Spending">
+<mapper namespace="com.example.demo.mapper.FixedCostMapper">
+	<select id="findAll" resultType="com.example.demo.entity.FixedCost">
 		SELECT
-			spendings.id AS id,
+			fixed_costs.id AS id,
 			category_id,
 			amount,
 	<!--			spending_categories.id AS category_id,-->
 	<!--			spending_categories.category_name AS category_name,-->
 			user_id
 		FROM
-			spendings
-	<!--		INNER JOIN spending_categories ON spending.category_id = spending_categories.id-->
+			fixed_costs
+	<!--		INNER JOIN fixed_cost_categories ON fixed_costs.category_id = fixed_cost_categories.id-->
 	<!--		INNER JOIN positions ON users.position_id=positions.id-->
 	</select>
-	<select id="findById" resultType="com.example.demo.entity.Spending">
+	<select id="findById" resultType="com.example.demo.entity.FixedCost">
 		SELECT
 		 	*
 		FROM
-			spendings
+			fixed_costs
 		WHERE 
 			id = #{id}
 	</select>
 	<insert id="create">
-		INSERT INTO spendings(
+		INSERT INTO fixed_costs(
 			id,
 			category_id,
 			amount,
@@ -38,7 +38,7 @@
 		)
 	</insert>
 	<update id="edit">
-		UPDATE spendings SET
+		UPDATE fixed_costs SET
 			category_id = #{categoryId},
 			amount = #{amount},
 			user_id = #{userId},

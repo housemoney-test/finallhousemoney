@@ -1,8 +1,10 @@
-package com.example.demo.entity;
+package com.example.demo.form;
 
-public class Income {
+import java.io.Serializable;
 
-    private int id;
+public class EditFixedCostForm implements Serializable {
+	
+	private int id;
 
     private int categoryId;
     

@@ -7,7 +7,7 @@
 		SELECT
 			id,
 			name,
-			password
+			password、
 			phone_number AS phoneNumber
 		FROM
 			users
