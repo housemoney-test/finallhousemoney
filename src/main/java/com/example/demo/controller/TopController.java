@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.entity.User;
+import com.example.demo.form.CreateUserForm;
 import com.example.demo.form.LoginUserForm;
+import com.example.demo.service.CreateUserService;
 import com.example.demo.service.LoginUserService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/")
@@ -20,6 +24,9 @@ public class TopController {
 
 	@Autowired
 	private LoginUserService loginUserService;
+	
+	@Autowired
+	private CreateUserService createUserService;
 
 	@GetMapping
 	public String home(Model model) {
@@ -59,8 +66,19 @@ public class TopController {
 		}
 	}
 
+	@PostMapping("/signUp")
+	public String create(@ModelAttribute("createUserForm")CreateUserForm createUserForm, BindingResult result, Model model, HttpSession session) {
+		
+		//セッションにユーザー情報を保持する
+		session.setAttribute("createUserForm", createUserForm);
+		//ユーザー情報をデータベースに登録する
+		createUserService.create(createUserForm);
+		return "redirect:/users/home";
+	}
+	
 	@GetMapping("/signUp")
-	public String signUp(Model model) {
+	public String create(Model model) {
+		model.addAttribute("createUserForm", new CreateUserForm());
 		return "top/signUp";
 	}
 

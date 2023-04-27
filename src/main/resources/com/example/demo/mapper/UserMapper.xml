@@ -15,15 +15,11 @@
 	<!-- 新規登録 -->
 	<insert id="create">
 		INSERT INTO users(
-			id,
 			name,
-			password,
-			phone_number AS phoneNumber
+			password
 		) VALUES (
-			#{id},
 			#{name},
-			#{password},
-			#{phoneNumber}
+			#{password}
 		)
 	</insert>
 	<!--ログイン -->

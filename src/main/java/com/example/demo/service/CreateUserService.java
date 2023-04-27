@@ -19,7 +19,6 @@ public class CreateUserService {
 	public int create(CreateUserForm form) {
 		User entity = new User();
 		entity.setName(form.getName());
-		entity.setPhoneNumber(form.getPhoneNumber());
 		entity.setPassword(form.getPassword());
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		entity.setPassword(encoder.encode(form.getPassword()));
