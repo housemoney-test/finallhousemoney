@@ -13,4 +13,8 @@ public interface SpendingMapper {
 
 	int create(Spending entity);
 
+	int edit(Spending spending);
+
+	Spending findById(int id);
+
 }

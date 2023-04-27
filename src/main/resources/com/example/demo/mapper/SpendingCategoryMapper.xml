@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.SpendingCategoryMapper">
+<select id="spendingCategoryAll" resultType="com.example.demo.entity.SpendingCategory">
+	SELECT
+		id,
+		category_name AS categoryName
+	FROM
+		spending_categories
+</select>
+</mapper>
