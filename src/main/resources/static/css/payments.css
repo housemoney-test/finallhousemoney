@@ -1,10 +1,30 @@
 @charset "UTF-8";
 
 .container {
-	width: 30%;
-	margin: 1rem auto;
+	width: 80%;
+	margin: 5rem auto;
+	border-radius: 25px;
+	background-color: #FFFFCC;
 }
-
+.upperPart {
+	margin: 20px 40px;
+	text-align: right;
+}
+.moveButton {
+	font-size: 1rem;
+	font-weight: 700;
+	line-height: 1.5;
+	position: relative;
+	padding: 1rem 2rem;
+	user-select: none;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	letter-spacing: 0.1em;
+	border-radius: 0.5rem;
+	color: black;
+	background-color: #FFFFCE;
+}
 .changeButton {
 	text-align: center;
 	margin: 1rem auto;
@@ -13,12 +33,12 @@
 .changeButton button {
 	display: inline-block;
 	text-decoration:  none;
-	color: #668ad8;
+	color: #FF9900;
 	width: 100px;
 	height: 100px;
 	line-height: 100px;
 	border-radius: 50%;
-	border: double 4px #668ad8;
+	border: double 4px #FF9900;
 	text-align: center;
 	overflow: hidden;
 	transition: .6s;
@@ -44,4 +64,58 @@
 .form-button {
 	text-align: center;
 	margin-top: 1rem;
+}
+
+/* calculator */
+table {
+	width: 300px;
+    height: 400px;
+	border: solid 1px #dcdcdca4;
+	border-right: solid 4px #dcdcdca4;
+	border-bottom: solid 4px #dcdcdca4;
+	border-radius: 10px;
+	text-align: center;
+	padding: 8px;
+	margin: 20px auto;
+	background-color: #ffffff;
+}
+table input {
+	width: 70px;
+	height: 70px;
+	font-size: x-large;
+	background-color: #dcdcdca4;
+	border: none;
+	border-radius: 40px;
+	outline: none;
+}   
+.display {
+	width: 250px;
+	text-align: right;
+	background: #ffffff;
+	border-top: solid #dcdcdca4 5px;
+	border-bottom: solid #dcdcdca4 5px;
+	border-right: solid #b6b6b6 6px;
+	border-left: solid #b6b6b6 6px;
+	border-radius: 5px;
+}
+.operator {
+	background-color: #87cefa;
+}
+.equal {
+	background-color: #b6b6b6;
+}
+table input:hover {
+	background: #747373b9;
+}
+.display:hover {
+	background: #ffffff;
+}
+.operator:hover {
+	background: #339cdd;
+}
+table input:active {
+	background:  #5a5a5a;
+}
+.operator:active {
+	background: #2c80b4;
 }
