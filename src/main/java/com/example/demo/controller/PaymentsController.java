@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Spending;
+import com.example.demo.form.CreateIncomeForm;
 import com.example.demo.form.CreateSpendingForm;
 import com.example.demo.form.EditSpendingForm;
 import com.example.demo.service.CreateSpendingService;
@@ -48,6 +49,11 @@ public class PaymentsController {
 		return "payments/create";
 	}
 	
+	public String createIncome(Model model) {
+		model.addAttribute("form", new CreateIncomeForm());
+		return "payments/create";
+	}
+	
 	@PostMapping("/create")
 	public String create(@Valid @ModelAttribute("form") CreateSpendingForm form, BindingResult result, Model model) {
 		if (result.hasErrors()) {
@@ -62,6 +68,20 @@ public class PaymentsController {
 		createSpendingService.create(form);
 		return "payments/create";
 	}
+	
+//	public String createIncome(@Valid @ModelAttribute("createIncomeForm") CreateSpendingForm createIncomeForm, BindingResult result, Model model) {
+//		if (result.hasErrors()) {
+//	        List<String> errorList = new ArrayList<String>();
+//            for (ObjectError error : result.getAllErrors()) {
+//                errorList.add(error.getDefaultMessage());
+//            }
+//            model.addAttribute("validationError", errorList);
+//			model.addAttribute("createIncomeForm", createIncomeForm);
+//			return "payments/create";
+//		}
+//		createIncomeService.createIncomeForm(createincomeForm);
+//		return "payments/create";
+//	}
 	
 	@GetMapping("/spending_edit")
 	public String spendingEdit(@RequestParam int id, EditSpendingForm editSpendingForm, Model model) {
