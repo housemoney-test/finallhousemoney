@@ -7,7 +7,7 @@
 </head>
 <body>
 	<header>
-		<p>FinalHouseMoney003</p>
+		<p>FinalHouseMoney</p>
 	</header>
 
 	<div class="container">
@@ -17,13 +17,15 @@
 					<h3>今月の収支</h3>
 				</div>
 				<div>
-					<button class="button">入出金登録</button>
+					<a th:href="@{/payments/create}">入出金登録</a> 
 				</div>
 				<div>
-					<button class="button">固定費登録</button>
+					<!--
+					<a th:href="" type="button">固定費登録</a>
+					--> 
 				</div>
 				<div>
-					<button class="button">日記</button>
+					<a th:href="@{/posts}">日記</a> 
 				</div>
 			</div>
 
