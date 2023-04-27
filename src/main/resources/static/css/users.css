@@ -5,7 +5,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 600px;
+  height: 1000px;
   background-image: url(images/23630342.jpg);
   background-size: cover;
   background-position: center;
@@ -13,10 +13,10 @@
   z-index: -1;
 }
 
-.card {
+.top-card {
 	display: none;
 	width: 50%;
-	height: 500px;
+	height: 740px;
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -33,3 +33,193 @@
 	float: right;
 	margin-right: 30px;
 }
+
+.rotate {
+  -webkit-transform: rotate(360deg);
+  transform: rotate(360deg);
+  -webkit-transition: all 0.5s ease;
+  transition: all 2s ease;
+}
+
+.login-card {
+	width: 50%;
+	height: 740px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	 transform: translate(-50%, 10%);
+}
+
+@font-face {
+  font-family: logofont;
+  src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/531144/couture-bld.otf);
+}
+
+.switch {
+  height:430px;
+  background: #EF5350;
+}
+
+
+.switch-left {
+  position: fixed;
+  background: transparent;
+  width: 138px;
+  height: 280px;
+  border-radius: 80px 5px 5px 80px;
+  border: 22px solid #fff;
+  transform: translate(calc(30vw - 217px), calc(45vh - 225px));
+  animation: switch-left-animation 1.75s ease;
+}
+
+.pad-left {
+  position: fixed;
+  width: 45px;
+  height: 45px;
+  background: #fff;
+  border-radius: 100%;
+  margin-top: 35px;
+  margin-left: 27.5px;
+}
+
+.switch-right {
+  position: fixed;
+  background: #fff;
+  width: 138px;
+  height: 280px;
+  border-radius: 5px 80px 80px 5px;
+  transform: translate(calc(43vw - 217px), calc(45vh - 225px));
+  animation: switch-right-animation 1.75s ease;
+}
+
+.pad-right {
+  position: fixed;
+  width: 45px;
+  height: 45px;
+  background: #EF5350;
+  border-radius: 100%;
+  margin-top: 130px;
+  margin-left: 40px;
+}
+
+.line {
+  width: 6px;
+  height: 100vh;
+  position: fixed;
+  background: white;
+  top: 0;
+  left: calc(50vw - 3px);
+  opacity: 0.25;
+}
+
+
+.nintendo-text {
+  font-family: logofont;
+  font-size: 50px;
+  color: #fff;
+  letter-spacing: 19px;
+  padding-top:320px;
+  padding-left:50px;
+  transform: translate(calc(22vw - 288px), calc(10vh - 50px));
+}
+
+.text {
+  animation: text-animation 1.75s ease;
+}
+
+
+
+.clack-svg {
+  width: 150px;
+  height: 150px;
+  background: rgba(255,255,255,0);
+  position: fixed;
+  transform: translate(calc(30vw + 70px), calc(50vh - 800px)) rotate(-5deg);
+  animation: bodyclack 1.75s ease;
+}
+
+.clack-svg > line {
+  stroke: #fff;;
+  stroke-width: 7;
+  stroke-dasharray: 100;
+  stroke-dashoffset: -100;
+  opacity: 0;
+  animation: clack 1.75s linear;
+}
+
+.reload {
+  position: fixed;
+  width: 75px;
+  height: 75px;
+  border-radius: 5px;
+  left: calc(50vw - 37.5px);
+  bottom: calc(50vh - 345px);
+  cursor: pointer;
+  transition: background 0.3s ease;
+  animation: reload-animation 2.5s ease;
+}
+
+.reload:hover {
+  background: rgba(0,0,0,0.1)
+}
+
+.reload > path {
+  fill: #fff;
+}
+
+@-webkit-keyframes switch-left-animation {
+  0% {transform: translate(calc(30vw - 217px), calc(50vh - 225px));}
+  73% {transform: translate(calc(30vw - 217px), calc(50vh - 225px));}
+  85% {transform: translate(calc(30vw - 217px), calc(50vh - 195px));}
+}
+
+@-webkit-keyframes switch-right-animation {
+  0% {transform: translate(calc(43vw - 217px), calc(50vh - 310px));}
+  25% {transform: translate(calc(43vw - 217px), calc(50vh - 310px));}
+  50% {transform: translate(calc(43vw - 217px), calc(50vh - 325px));}
+  65% {transform: translate(calc(43vw - 217px), calc(50vh - 325px));}
+  85% {transform: translate(calc(43vw - 217px), calc(50vh - 195px));}
+}
+
+@-webkit-keyframes text-animation {
+  0% {transform: translate(0px, 0px); opacity:0;}
+  70% {}
+  75% {transform: translate(0px, 0px);opacity: 0;}
+  85% {transform: translate(0px, 15px);}
+}
+
+@-webkit-keyframes clack {
+  0% {stroke-dashoffset: 100;}
+  75% {stroke-dashoffset: 100; opacity: 0;}
+  83% {opacity: 1}
+  87% {stroke-dashoffset: 0;}
+  93% {opacity: 1;}
+  100% {stroke-dashoffset: -100; opacity: 0;}
+}
+
+@-webkit-keyframes reload-animation {
+  0% {opacity: 0;}
+  75% {opacity: 0;}
+}
+
+@media screen and (max-width: 720px) {
+  .logo {
+    transform: scale(0.3);
+    margin-top: 60px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .logo {
+    transform: scale(0.5);
+    margin-top: 45px;
+  }
+}
+
+@media screen and (max-height: 420px) {
+  .logo {
+    transform: scale(0.45);
+    margin-top: 65px;
+  }
+}
+*/

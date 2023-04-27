@@ -13,17 +13,32 @@
 	<body>
 		<main style="position: relative;">
 			<div class="blurry-background"></div>
-			<div class="card mb-3 shadow" id="item">
-				<img src="./css/images/housemoney-2.jpg" class="card-img-top">
+			<div class="card mb-3 shadow top-card" id="item">
+					<div class="logo switch">
+						<div class="switch-left">
+							<div class="pad-left"></div>
+						</div>
+						<div class="switch-right">
+							<div class="pad-right"></div>
+						</div>
+						<div class="text">
+							<p class="nintendo-text">HOUSEMONEY</p>
+						</div>
+						<svg class="clack-svg">
+							<line x1="25" y1="90" x2="50" y2="15" stroke-linecap="round" />
+							<line x1="47" y1="107" x2="120" y2="30" stroke-linecap="round" />
+							<line x1="65" y1="130" x2="137" y2="100" stroke-linecap="round" />
+						</svg>
+				  </div>
 				<div class="card-body">
 					<h5 class="card-title mb-3 mt-3">HouseMoneyへようこそ！</h5>
 					<p class="card-text mt-4">家計の収支を毎日つけるの大変じゃないですか？</br>
 						HouseMoneyではそんな苦労を簡単に解決することができます。
 					</p>
 					<p class="card-text"><small class="text-muted">
-						※利用には<a th:href="@{./signUp}">新規登録</a>が必要です。
-					すでに登録済みのユーザーは<a th:href="@{./login}">こちら</a>。</small></p>
-					<img src="./css/images/piggy_bank.png" class="piggy">
+							※利用には<a th:href="@{./signUp}">新規登録</a>が必要です。
+							すでに登録済みのユーザーは<a th:href="@{./login}">こちら</a>。</small></p>
+					<img src="./css/images/piggy_bank.png" class="piggy clickable">
 				</div>
 			</div>
 		</main>
