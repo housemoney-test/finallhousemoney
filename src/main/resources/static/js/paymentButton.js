@@ -9,18 +9,18 @@ const incomeForm = document.getElementById("incomeForm");
 const spendingForm = document.getElementById("spendingForm");
 
 incomeButton.disabled = true;
-spendingForm.style.visibility = "hidden";
+spendingForm.style.display = "none";
 
 function clickIncome() {
-	spendingForm.style.visibility = "hidden";
-	incomeForm.style.visibility = "visible";
+	spendingForm.style.display = "none";
+	incomeForm.style.display = "block";
 	spendingButton.disabled = false;
 	incomeButton.disabled = true;
 }
 
 function clickSpending() {
-	incomeForm.style.visibility = "hidden";
-	spendingForm.style.visibility = "visible";
+	incomeForm.style.display = "none";
+	spendingForm.style.display = "block";
 	incomeButton.disabled = false;
 	spendingButton.disabled = true;
 }
