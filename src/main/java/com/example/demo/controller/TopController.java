@@ -24,7 +24,7 @@ public class TopController {
 
 	@Autowired
 	private LoginUserService loginUserService;
-	
+
 	@Autowired
 	private CreateUserService createUserService;
 
@@ -32,7 +32,7 @@ public class TopController {
 	public String home(Model model) {
 		return "top/top";
 	}
-	
+
 	@GetMapping("/login")
 	public String login(Model model) {
 		model.addAttribute("loginUserForm", new LoginUserForm());
@@ -40,14 +40,14 @@ public class TopController {
 	}
 
 	@PostMapping("/login")
-	public String login( @ModelAttribute("loginUserForm") LoginUserForm loginUserForm,
+	public String login(@ModelAttribute("loginUserForm") LoginUserForm loginUserForm,
 			BindingResult result, Model model, HttpSession session) {
-		
+
 		//loginUserFormのpassを暗号化
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		// serviceのloginメソッドの戻り値がloginUserに代入される
 		User loginUser = loginUserService.login(loginUserForm);
-		
+
 		if (result.hasErrors()) {
 			model.addAttribute("loginUserForm", new LoginUserForm());
 			return "top/login";
@@ -56,7 +56,6 @@ public class TopController {
 
 		//パスが一致している場合
 		if (loginUser != null && encoder.matches(loginUserForm.getPassword(), loginUser.getPassword())) {
-			
 			//セッションにユーザー情報を保持する
 			session.setAttribute("loginUserForm", loginUserForm);
 			return "redirect:/users/home";
@@ -70,18 +69,22 @@ public class TopController {
 	}
 
 	@PostMapping("/signUp")
-	public String create(@ModelAttribute("createUserForm")CreateUserForm createUserForm, BindingResult result, Model model, HttpSession session) {
+	public String create(@ModelAttribute("createUserForm") CreateUserForm createUserForm, BindingResult result,
+			Model model, HttpSession session) {
 		
+		User user = loginUserService.setUser(createUserForm);
 		//セッションにユーザー情報を保持する
-		session.setAttribute("createUserForm", createUserForm);
+		session.setAttribute("user", user);
 		//ユーザー情報をデータベースに登録する
 		createUserService.create(createUserForm);
+
 		return "redirect:/users/home";
 	}
-	
+
 	@GetMapping("/signUp")
 	public String create(Model model) {
 		model.addAttribute("createUserForm", new CreateUserForm());
+
 		return "top/signUp";
 	}
 

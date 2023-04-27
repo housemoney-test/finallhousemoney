@@ -36,11 +36,11 @@ public class UsersController {
 	    CreateUserForm createUserForm = (CreateUserForm) session.getAttribute("createUserForm");
 	    if(createUserForm != null) {
 	    	//新規登録の場合はCreateUserFormをModelにセット
-	    	model.addAttribute("createUserForm", createUserForm);
+	    	model.addAttribute("user", createUserForm);
 	    } else {
 	    	 LoginUserForm loginUserForm = (LoginUserForm) session.getAttribute("loginUserForm");
 	    	 //ログインの場合はLoginUserFormをModelにセット
-	    	 model.addAttribute("loginUserForm", loginUserForm);
+	    	 model.addAttribute("user", loginUserForm);
 	    }
 	  
 		return "users/home";

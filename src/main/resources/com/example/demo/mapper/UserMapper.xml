@@ -25,11 +25,11 @@
 	<!--ログイン -->
 	<select id="login" resultType="com.example.demo.entity.User">
 		SELECT
-			*,
-			id
+			*
 		FROM
 			users
 		WHERE
-			id=#{id}
+			name=#{name}
+			
 	</select>
 </mapper>
