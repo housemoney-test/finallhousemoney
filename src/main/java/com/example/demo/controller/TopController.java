@@ -32,7 +32,7 @@ public class TopController {
 		return "top/login";
 	}
 
-	@PostMapping("users/login")
+	@PostMapping("/login")
 	public String login( @ModelAttribute("loginUserForm") LoginUserForm loginUserForm,
 			BindingResult result, Model model) {
 		
