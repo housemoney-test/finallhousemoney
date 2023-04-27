@@ -11,10 +11,11 @@ public interface FixedCostMapper {
 
 	List<FixedCost> findAll();
 
-	int create(FixedCost entity);
 
 	int edit(FixedCost fixedCost);
 
 	FixedCost findById(int id);
+
+	int createFixedCost(FixedCost entity);
 
 }
