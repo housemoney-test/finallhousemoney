@@ -11,15 +11,15 @@
 		<h2 class="htmlTitle">日記をかく</h2>
 		
 		<div class="form-body">
-			<form>
+			<form th:action="@{/posts/create}" th:object="${form}" method="POST">
 				<div class="form-row">
 					<label for="title">簡潔に書くと？</label>
-					<input type="text" />
+					<input type="text" th:field="*{title}" name="title"><br>
 				</div>
 
 				<div class="form-row">
 					<label for="body">詳しく書くと？</label>
-					<textarea name="contents" cols="80" rows="5"></textarea>
+					<textarea th:field="*{body}" name="body" cols="80" rows="5"></textarea>
 				</div>
 
 				<div class="form-button">

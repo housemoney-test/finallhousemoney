@@ -17,7 +17,7 @@ public class CreatePostService{
     @Transactional
     public int create(CreatePostForm form) {
         Post entity = new Post();
-        entity.setUser_id(form.getUser_id());
+        entity.setTitle(form.getTitle());;
         entity.setBody(form.getBody());
         return postMapper.create(entity);
     }
