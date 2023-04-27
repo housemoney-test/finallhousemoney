@@ -28,6 +28,7 @@ public class UsersController {
 	
 	@GetMapping("/home")
 	public String home(Model model) {
+		model.addAttribute("users", new User());
 		return "users/home";
 	}
 	
