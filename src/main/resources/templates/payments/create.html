@@ -3,28 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <title>FinalHouseMoney | 入出金登録</title>
+<link th:href="@{/css/payments.css}" rel="styleSheet" type="text/css">
 </head>
 <body>
-	<div class="changeButton">
-		<button type="button" id="incomeButton" onclick="clickIncome()">入金</button>
-		<button type="button" id="spendingButton" onclick="clickSpending()">出金</button>
-	</div>
-
+	<div class="container">
+		<div class="changeButton">
+			<button type="button" id="incomeButton" onclick="clickIncome()">入金</button>
+			<button type="button" id="spendingButton" onclick="clickSpending()">出金</button>
+		</div>
+	
 		<div class="form-body">
 			<form id="incomeForm">
 				<div class="form-row">
 					<label for="title">カテゴリー</label>
 					<input type="text" />
 				</div>
-
+	
 				<div class="form-row">
 					<label for="body">入金額</label>
 					<input type="text" />
 				</div>
-
-				<input type="submit" value="登録">
+				
+				<div class="form-button">
+					<input type="submit" value="登録">
+				</div>
 			</form>
-
+	
 			<form id="spendingForm" th:action="@{/payments/create}" th:object="${form}" th:method="POST">
 				<div th:if="${validationError}" th:each="error : ${validationError}">
 			      <label class="text-danger" th:text="${error}"></label>
@@ -37,7 +41,7 @@
 						<option th:value="3">雑費</option>
 					</select>
 				</div>
-
+	
 				<div class="form-row">
 					<label for="body">出金額</label>
 					<input type="text" th:field="*{amount}" />
@@ -47,10 +51,13 @@
 					<label for="body">ユーザーID</label>
 					<input type="text" th:field="*{userId}" />
 				</div>
-
-				<input type="submit" value="登録">
+	
+				<div class="form-button">
+					<input type="submit" value="登録">
+				</div>
 			</form>
-		</div>
+		</div>	
+	</div>
 
 	<script type="text/javascript" th:src="@{/js/paymentButton.js}"></script>
 </body>
