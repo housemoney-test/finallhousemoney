@@ -41,6 +41,7 @@ public class PaymentsController {
 	@Autowired
 	private GetAllSpendingsService getAllSpendingsService;
 	
+	
 	@GetMapping("/create")
 	public String create(Model model) {
 		model.addAttribute("form", new CreateSpendingForm());
@@ -72,18 +73,18 @@ public class PaymentsController {
 	    editSpendingForm.setAmount(spending.getAmount());
 	    editSpendingForm.setUserId(spending.getUserId());
         model.addAttribute("editSpendingForm", editSpendingForm);
-		return "payments/spending_edit";
+		return "payments/spendingEdit";
 	}
 	
 	@PostMapping("/spending_edit")
-	public String spendingEdit(@Valid @ModelAttribute("editUser") EditSpendingForm editSpendingForm, BindingResult result, Model model) {
+	public String spendingEdit(@Valid @ModelAttribute("editSpendingForm") EditSpendingForm editSpendingForm, BindingResult result, Model model) {
 		List<Spending> spendings = getAllSpendingsService.getAllSpendings();
 		if (result.hasErrors()) {
             model.addAttribute("editSpendingForm", editSpendingForm);
-            return "payments/spending_edit";
+            return "redirect:/payments/spendingEdit";
         }
 		model.addAttribute("spendings", spendings);
 		editSpendingService.edit(editSpendingForm);
-		return "payments/spending_edit";
+		return "redirect:/users/index";
 	}
 }

@@ -6,16 +6,22 @@
 </head>
 <body>
 	<div class="container">
-		<form id="incomeForm">
+		<form id="incomeForm" th:action="@{/payments/spending_edit}" th:object="${editSpendingForm}" th:method="POST">
+			<input type="hidden" th:field="*{id}" th:value="${id}" />
 			<div class="form-row">
 				<label for="title">カテゴリー</label>
-				<input type="text" />
+				<select type="text" th:field="*{categoryId}">
+					<option th:value="1">食費</option>
+					<option th:value="2">生活費</option>
+					<option th:value="3">雑費</option>
+				</select>
 			</div>
 
 			<div class="form-row">
 				<label for="body">出金額</label>
-				<input type="text" />
+				<input type="text" th:field="*{amount}" />
 			</div>
+			<input type="text" th:field="*{userId}" />
 
 			<input type="submit" value="編集">
 		</form>
