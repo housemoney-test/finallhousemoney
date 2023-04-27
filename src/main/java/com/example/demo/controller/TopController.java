@@ -31,7 +31,7 @@ public class TopController {
 		return "top/login";
 	}
 	
-	@GetMapping("/signUp")
+	@GetMapping("users/signUp")
 	public String signUp(Model model) {
 		return "top/signUp";
 	}
@@ -42,7 +42,7 @@ public class TopController {
 		return "top/login";
 	}
 
-	@PostMapping("/login")
+	@PostMapping("users/login")
 	public String login( @ModelAttribute("loginUserForm") LoginUserForm loginUserForm,
 			BindingResult result, Model model) {
 		
