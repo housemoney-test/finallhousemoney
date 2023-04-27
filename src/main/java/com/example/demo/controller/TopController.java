@@ -57,7 +57,7 @@ public class TopController {
 		//パスが一致している場合
 		if (loginUser != null && encoder.matches(loginUserForm.getPassword(), loginUser.getPassword())) {
 			//セッションにユーザー情報を保持する
-			session.setAttribute("loginUserForm", loginUserForm);
+			session.setAttribute("user", session);
 			return "redirect:/users/home";
 
 		} else {
@@ -72,13 +72,14 @@ public class TopController {
 	public String create(@ModelAttribute("createUserForm") CreateUserForm createUserForm, BindingResult result,
 			Model model, HttpSession session) {
 		
-		User user = loginUserService.setUser(createUserForm);
-		//セッションにユーザー情報を保持する
-		session.setAttribute("user", user);
 		//ユーザー情報をデータベースに登録する
 		createUserService.create(createUserForm);
-
-		return "redirect:/users/home";
+		
+		//セッションにユーザー情報を保持する
+		User user = loginUserService.setUser(createUserForm);
+		session.setAttribute("user", user);
+		model.addAttribute("user", user);
+		return "users/home";
 	}
 
 	@GetMapping("/signUp")
