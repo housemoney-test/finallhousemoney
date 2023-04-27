@@ -28,21 +28,11 @@ public class TopController {
 	
 	@GetMapping("/login")
 	public String login(Model model) {
-		return "top/login";
-	}
-	
-	@GetMapping("users/signUp")
-	public String signUp(Model model) {
-		return "top/signUp";
-	}
-
-	@GetMapping("/login")
-	public String login(Model model) {
 		model.addAttribute("loginUserForm", new LoginUserForm());
 		return "top/login";
 	}
 
-	@PostMapping("users/login")
+	@PostMapping("/login")
 	public String login( @ModelAttribute("loginUserForm") LoginUserForm loginUserForm,
 			BindingResult result, Model model) {
 		
