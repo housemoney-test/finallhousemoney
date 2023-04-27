@@ -3,7 +3,12 @@ $(document).ready(function() {
 	$('#item').fadeIn(2000);
 });
 
-const pig = $('.piggy');
-pig.click(function(){
-	alert('クリックされました！');
+$(document).ready(function() {
+	$(".clickable").click(function() {
+		$(this).toggleClass("rotate");
+	});
 });
+
+function reloadpage() {
+    window.location.reload(false);
+}
