@@ -8,7 +8,8 @@
 	<div class="container">
 		<div class="fixed_box">
 			<h3>固定費登録</h3>
-			<form id="fixedForm">
+<!--			<form id="fixedForm">-->
+			<form id="createFixedCostForm" th:action="@{/payments/fixed?action=edit}" th:method="POST" th:object="${form}">
 				<div class="form-row">
 					<label for="title">カテゴリー</label>
 					<input type="text" />
@@ -20,6 +21,7 @@
 				</div>
 
 				<input type="submit" value="登録">
+				<form id="editFixedCostForm" th:action="@{/payments/fixed?action=edit}" th:method="POST" th:object="${form}">
 			</form>
 
 			<div class="fixedTable">
@@ -29,8 +31,8 @@
 						<tr>
 							<th>固定費名称</th>
 							<th>金額</th>
-							<th>z</th>
-z							<th></th>
+							<th></th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -43,6 +45,34 @@ z							<th></th>
 					</tbody>
 				</table>
 			</div>
+			<form id="FixedCostForm" th:action="@{/payments/fixed}" th:object="${editFixedCostForm}" th:method="POST">
+				<div th:if="${validationError}" th:each="error : ${validationError}">
+			      <label class="text-danger" th:text="${error}"></label>
+			    </div>
+			    <input type="hidden" th:field="*{id}" th:value="${id}" />
+				<div class="form-row">
+					<label for="title">カテゴリー</label>
+					<select type="text" th:field="*{categoryId}">
+						<option th:value="1">家賃</option>
+						<option th:value="2">生活費</option>
+						<option th:value="3">雑費</option>
+					</select>
+				</div>
+			
+				<div class="form-row">
+					<label for="body">出金額</label>
+					<input type="text" th:field="*{amount}" />
+				</div>
+				
+				<div class="form-row">
+					<label for="body">ユーザーID</label>
+					<input type="text" th:field="*{userId}" />
+				</div>
+			
+				<div class="form-button">
+					<input type="submit" value="更新">
+				</div>
+			</form>
 		</div>
 	</div>
 </body>
