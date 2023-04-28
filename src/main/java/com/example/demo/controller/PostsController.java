@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.example.demo.form.CreatePostForm;
 import com.example.demo.service.CreatePostService;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/posts")
@@ -18,7 +19,8 @@ public class PostsController{
     @Autowired
     private CreatePostService createPostService;
     @GetMapping
-    public String index(Model model){
+    public String index(Model model, HttpSession session){
+        session.setAttribute("session", session);
         return "posts/index";
     }
     
