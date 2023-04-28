@@ -8,7 +8,8 @@
 	<div class="container">
 		<div class="fixed_box">
 			<h3>固定費登録</h3>
-			<form id="fixedForm">
+<!--			<form id="fixedForm">-->
+			<form id="createFixedCostForm" th:action="@{/payments/fixed?action=edit}" th:method="POST" th:object="${form}">
 				<div class="form-row">
 					<label for="title">カテゴリー</label>
 					<input type="text" />
@@ -20,7 +21,7 @@
 				</div>
 
 				<input type="submit" value="登録">
-<!--				<form id="editFixedCostForm" th:action="@{/payments/fixed?action=edit}" th:method="POST" th:object="${form}">-->
+				<form id="editFixedCostForm" th:action="@{/payments/fixed?action=edit}" th:method="POST" th:object="${form}">
 			</form>
 
 			<div class="fixedTable">
@@ -44,8 +45,7 @@
 					</tbody>
 				</table>
 			</div>
-			<form id="editFixedCostForm" th:action="@{/payments/fixed}" th:object="${editFixedCostForm}" th:method="POST">
-<!--			<form id="editfixedCostForm" th:action="@{/payments/fixed?action=create}" th:object="${form}" th:method="POST">-->
+			<form id="FixedCostForm" th:action="@{/payments/fixed}" th:object="${editFixedCostForm}" th:method="POST">
 				<div th:if="${validationError}" th:each="error : ${validationError}">
 			      <label class="text-danger" th:text="${error}"></label>
 			    </div>
