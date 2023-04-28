@@ -58,7 +58,10 @@ public class TopController {
 		//パスが一致している場合
 		if (loginUser != null && encoder.matches(loginUserForm.getPassword(), loginUser.getPassword())) {
 			// 認証が成功した場合、ログインされたUserオブジェクトをセッションに設定する
-		    session.setAttribute("user", loginUser);
+			//セッションにユーザー情報を保持する
+			User user = loginUserService.setUser(loginUserForm);
+			session.setAttribute("user", user);
+			model.addAttribute("user", user);
 			return "redirect:/users/home";
 
 		} else {
