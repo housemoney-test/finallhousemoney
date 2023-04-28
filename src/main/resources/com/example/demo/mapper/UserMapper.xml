@@ -30,6 +30,5 @@
 			users
 		WHERE
 			name=#{name}
-			
 	</select>
 </mapper>

@@ -24,12 +24,22 @@ public class LoginUserService {
 		return mapper.login(entity);
 
 	}
-
+		
 	public User setUser(UserForm userForm) {
 		User user = new User();
 		user.setName(userForm.getName());
 		user.setPassword(userForm.getPassword());
 	
 	return user;
+	}
+	
+	public User setUserLogin(UserForm userForm) {
+		User user = new User();
+		user.setName(userForm.getName());
+		user.setPassword(userForm.getPassword());
+		user.setLoginErr(userForm.getLoginErr());
+	
+	return user;
+	
 	}
 }

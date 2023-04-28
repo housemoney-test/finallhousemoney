@@ -4,6 +4,15 @@ public class UserForm {
 
 	private String name;
 	private String password;
+	private String loginErr;
+
+	public String getLoginErr() {
+		return loginErr;
+	}
+
+	public void setLoginErr(String loginErr) {
+		this.loginErr = loginErr;
+	}
 
 	public String getName() {
 		return name;
