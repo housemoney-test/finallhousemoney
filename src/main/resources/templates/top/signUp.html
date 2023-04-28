@@ -29,11 +29,11 @@
 					<div class="form-body container text-end">
 						<div class="row mb-3 mt-4">
 							<label for="loginId" class="col-3" style="text-align:right;">ユーザー名:</label>
-							<input type="text" th:field="*{name}" class=" col-7" />
+							<input type="text" th:field="*{name}" name="name" class=" col-7" />
 						</div>
 						<div class="row">
 							<label for="password" class="col-3" style="text-align:right;">パスワード:</label>
-							<input type="password" th:field="*{password}" id="password" class="col-7" />
+							<input type="password" th:field="*{password}" name="password" class="col-7" />
 						</div>
 						<input type="submit" value="Login" class="btn btn-sm btn-success mt-3 col-2">
 						<p class="card-text"><small class="text-muted">
