@@ -8,102 +8,104 @@
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-	<div class="upperPart">
-		<a th:href="@{users/home}" class="moveButton">ホームに戻る</a>
-	</div>
-	<div class="container">
-		<div class="row">
-			<div class="col first-element">
-				<div class="changeButton">
-					<button type="button" id="incomeButton" onclick="clickIncome()">入金</button>
-					<button type="button" id="spendingButton" onclick="clickSpending()">出金</button>
+	<main id="falling-flowers">
+		<div class="container">
+			<div class="row">
+				<div class="col first-element">
+					<div class="changeButton">
+						<button type="button" id="incomeButton" onclick="clickIncome()">入金</button>
+						<button type="button" id="spendingButton" onclick="clickSpending()">出金</button>
+					</div>
+				
+					<div class="form-body">
+						<form id="incomeForm">
+							<div class="form-row">
+								<label for="title">カテゴリー</label>
+								<input type="text" />
+							</div>
+				
+							<div class="form-row">
+								<label for="body">入金額</label>
+								<input type="text" />
+							</div>
+							
+							<div class="form-button">
+								<input type="submit" value="登録">
+							</div>
+						</form>
+				
+						<form id="spendingForm" th:action="@{/payments/create}" th:object="${form}" th:method="POST">
+							<div th:if="${validationError}" th:each="error : ${validationError}">
+						      <label class="text-danger" th:text="${error}"></label>
+						    </div>
+							<div class="form-row">
+								<label for="title">カテゴリー</label>
+								<select type="text" th:field="*{categoryId}">
+									<option th:value="1">食費</option>
+									<option th:value="2">生活費</option>
+									<option th:value="3">雑費</option>
+								</select>
+							</div>
+				
+							<div class="form-row">
+								<label for="body">出金額</label>
+								<input type="text" th:field="*{amount}" />
+							</div>
+							
+							<div class="form-row">
+								<label for="body">ユーザーID</label>
+								<input type="text" th:field="*{userId}" />
+							</div>
+				
+							<div class="form-button">
+								<input type="submit" value="登録">
+							</div>
+						</form>
+					</div>
+					<div class="button-element">
+						<a th:href="@{users/home}" class="moveButton">ホームに戻る</a>
+					</div>								
 				</div>
-			
-				<div class="form-body">
-					<form id="incomeForm">
-						<div class="form-row">
-							<label for="title">カテゴリー</label>
-							<input type="text" />
-						</div>
-			
-						<div class="form-row">
-							<label for="body">入金額</label>
-							<input type="text" />
-						</div>
-						
-						<div class="form-button">
-							<input type="submit" value="登録">
-						</div>
-					</form>
-			
-					<form id="spendingForm" th:action="@{/payments/create}" th:object="${form}" th:method="POST">
-						<div th:if="${validationError}" th:each="error : ${validationError}">
-					      <label class="text-danger" th:text="${error}"></label>
-					    </div>
-						<div class="form-row">
-							<label for="title">カテゴリー</label>
-							<select type="text" th:field="*{categoryId}">
-								<option th:value="1">食費</option>
-								<option th:value="2">生活費</option>
-								<option th:value="3">雑費</option>
-							</select>
-						</div>
-			
-						<div class="form-row">
-							<label for="body">出金額</label>
-							<input type="text" th:field="*{amount}" />
-						</div>
-						
-						<div class="form-row">
-							<label for="body">ユーザーID</label>
-							<input type="text" th:field="*{userId}" />
-						</div>
-			
-						<div class="form-button">
-							<input type="submit" value="登録">
-						</div>
-					</form>
-				</div>				
+				<div class="col">
+					<form name="calculator">
+					    <table>
+					      <tr>
+					        <td colspan="4">
+					          <input type="text" class="display" name="display" value="" disabled>
+					        </td>
+					      </tr>
+					      <tr>
+					        <td><input type="button" value="7" onclick="get_calc(this)"></td>
+					        <td><input type="button" value="8" onclick="get_calc(this)"></td>
+					        <td><input type="button" value="9" onclick="get_calc(this)"></td>
+					        <td><input type="button" value="÷" class="operator" name="div_btn" onclick="get_calc(this)"></td>
+					      </tr>
+					      <tr>
+					        <td><input type="button" value="4" onclick="get_calc(this)"></td>
+					        <td><input type="button" value="5" onclick="get_calc(this)"></td>
+					        <td><input type="button" value="6" onclick="get_calc(this)"></td>
+					        <td><input type="button" value="×" class="operator" name="multi_btn" onclick="get_calc(this)"></td>
+					      </tr>
+					      <tr>
+					        <td><input type="button" value="1" onclick="get_calc(this)"></td>
+					        <td><input type="button" value="2" onclick="get_calc(this)"></td>
+					        <td><input type="button" value="3" onclick="get_calc(this)"></td>
+					        <td><input type="button" value="-" class="operator" onclick="get_calc(this)"></td>
+					      </tr>
+					      <tr>
+					        <td><input type="button" value="0" onclick="get_calc(this)"></td>
+					        <td><input type="button" value="C" onclick="get_calc(this)"></td>
+					        <td><input type="button" value="=" class="equal" onclick="get_calc(this)"></td>
+					        <td><input type="button" value="+" class="operator" onclick="get_calc(this)"></td>
+					      </tr>
+					    </table>		
+					</form>					
+				</div>			
 			</div>
-			<div class="col">
-				<form name="calculator">
-				    <table>
-				      <tr>
-				        <td colspan="4">
-				          <input type="text" class="display" name="display" value="" disabled>
-				        </td>
-				      </tr>
-				      <tr>
-				        <td><input type="button" value="7" onclick="get_calc(this)"></td>
-				        <td><input type="button" value="8" onclick="get_calc(this)"></td>
-				        <td><input type="button" value="9" onclick="get_calc(this)"></td>
-				        <td><input type="button" value="÷" class="operator" name="div_btn" onclick="get_calc(this)"></td>
-				      </tr>
-				      <tr>
-				        <td><input type="button" value="4" onclick="get_calc(this)"></td>
-				        <td><input type="button" value="5" onclick="get_calc(this)"></td>
-				        <td><input type="button" value="6" onclick="get_calc(this)"></td>
-				        <td><input type="button" value="×" class="operator" name="multi_btn" onclick="get_calc(this)"></td>
-				      </tr>
-				      <tr>
-				        <td><input type="button" value="1" onclick="get_calc(this)"></td>
-				        <td><input type="button" value="2" onclick="get_calc(this)"></td>
-				        <td><input type="button" value="3" onclick="get_calc(this)"></td>
-				        <td><input type="button" value="-" class="operator" onclick="get_calc(this)"></td>
-				      </tr>
-				      <tr>
-				        <td><input type="button" value="0" onclick="get_calc(this)"></td>
-				        <td><input type="button" value="C" onclick="get_calc(this)"></td>
-				        <td><input type="button" value="=" class="equal" onclick="get_calc(this)"></td>
-				        <td><input type="button" value="+" class="operator" onclick="get_calc(this)"></td>
-				      </tr>
-				    </table>		
-				</form>					
-			</div>			
-		</div>
-	</div>
-
+		</div>		
+	</main>
 	<script type="text/javascript" th:src="@{/js/paymentButton.js}"></script>
 	<script type="text/javascript" th:src="@{/js/calculator.js}"></script>
+	<!--<script type="text/javascript" th:src="@{/js/fallingFlowers.js}"></script>-->
 </body>
 </html>
