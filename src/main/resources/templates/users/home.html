@@ -17,8 +17,8 @@
 			<div>
 				<div class="row">
 
-					<p>ユーザー名: <span th:text="${user.name}">ユーザー名</span></p>
-					<p>パスワード: <span th:text="${user.password}">パスワード</span></p>
+					<p>ユーザー名: <span th:text="${session.user.name}">ユーザー名</span></p>
+					<p>パスワード: <span th:text="${session.user.password}">パスワード</span></p>
 
 					<h3>今月の収支</h3>
 				</div>

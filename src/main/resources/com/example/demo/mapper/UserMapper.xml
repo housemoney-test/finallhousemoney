@@ -30,5 +30,6 @@
 			users
 		WHERE
 			name=#{name}
+			LIMIT 1
 	</select>
 </mapper>
