@@ -9,6 +9,8 @@ public class User {
 	private String password;
 	
 	private String phoneNumber;
+	
+	private String loginErr;
 
 	public Long getId() {
 		return id;
@@ -42,4 +44,13 @@ public class User {
 		this.phoneNumber = phoneNumber;
 	}
 
+	public String getLoginErr() {
+		return loginErr;
+	}
+
+	public void setLoginErr(String loginErr) {
+		this.loginErr = loginErr;
+	}
+
+	
 }
