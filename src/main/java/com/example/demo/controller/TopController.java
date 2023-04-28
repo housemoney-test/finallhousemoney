@@ -35,6 +35,7 @@ public class TopController {
 
 	@GetMapping("/login")
 	public String login(Model model) {
+		//フォームの型指定
 		model.addAttribute("loginUserForm", new LoginUserForm());
 		return "top/login";
 	}
@@ -56,8 +57,8 @@ public class TopController {
 
 		//パスが一致している場合
 		if (loginUser != null && encoder.matches(loginUserForm.getPassword(), loginUser.getPassword())) {
-			//セッションにユーザー情報を保持する
-			session.setAttribute("user", session);
+			// 認証が成功した場合、ログインされたUserオブジェクトをセッションに設定する
+		    session.setAttribute("user", loginUser);
 			return "redirect:/users/home";
 
 		} else {
