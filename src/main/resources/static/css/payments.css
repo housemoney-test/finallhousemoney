@@ -4,8 +4,6 @@
 .container {
 	width: 80%;
 	margin: 5rem auto;
-	border-radius: 25px;
-	background-color: #FFFFCC;
 }
 .button-element {
 	margin: 20px 40px;
@@ -25,48 +23,6 @@
 }
 
 /* create.html */
-.falling-flowers {
-	position: relative;
-	height: 100vh;
-	width: 100%;
-	overflow: hidden;
-}
-.petal {
-	position: absolute;
-	background-color: #FFFFCC;
-	border-radius: 100% 0 100% 0;
-	animation: animate-petal 10s linear;
-}
-.petal::after {
-	content: "";
-	position: absolute;
-	top: -14%;
-	left: -10%;
-	display: block;
-	width: 100%;
-	height: 100%;
-	background-color: #FFFFCC;
-	border-radius: 100% 0 100% 0;
-	transform: rotate(15deg);
-}
-@keyframes animate-petal {
-	0% {
-		top: 0;
-		opacity: 0;
-		transform: rotate(0deg);
-	}
-	10% {
-		opacity: 1;
-	}
-	90% {
-		opacity: 1;
-	}
-	100% {
-		opacity: 0;
-		top: 100vh;
-		transform: rotate(3000deg);
-	}
-}
 .changeButton {
 	text-align: center;
 	margin: 1rem auto;
@@ -183,4 +139,41 @@ table input:active {
 }
 .operator:active {
 	background: #2c80b4;
+}
+
+/*tab*/
+#tab-list {
+	margin-bottom: -0.5em;
+}
+#tab-list li {
+	display: inline-block;
+	border-width: 3px 3px 0 3px;
+	border-style: solid;
+	border-color: #FF9900;
+	border-radius: 0.75em 0.75em 0 0;
+	padding: 0.75em 1em;
+	text-decoration: none;
+	color: black;
+	background-color: white;
+	font-weight: bold;
+	position: relative;
+}
+#tab-list li:hover {
+	transform: translateY(-5px);
+}
+#tab-list li.active {
+	background-color: #FF9900;
+}
+#tab-content{
+	border: 1px solid #FF9900;
+	margin-top: -1px;
+	padding: 1em;
+	background-color: white;
+	position: relative;
+	z-index: 0;
+	display: none;
+}
+#tab-content.active {
+	display: block;
+	border: 5px solid #FF9900;;
 }
