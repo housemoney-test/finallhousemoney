@@ -1,0 +1,7 @@
+@charset "UTF-8";
+
+.card-img {
+	height: 200px;
+	width: 100%;
+	background-size: cover;
+}
