@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.entity.*;
+
 @Service
 public class GetTodaySpendingService{
     
@@ -13,7 +15,9 @@ public class GetTodaySpendingService{
     private SpendingMapper mapper;
     
     @Transactional
-    public int getTodaySpending(String name) {
-        return mapper.getTodaySpending(name);
+    public User getTodaySpending(String name) {
+        User user = new User();
+        user.setName(name);
+        return mapper.getTodaySpending(user);
     }
 }

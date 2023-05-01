@@ -11,8 +11,18 @@ public class User {
 	private String phoneNumber;
 	
 	private String loginErr;
+	
+	private int daySpending;
 
-	public Long getId() {
+	public int getDaySpending() {
+        return daySpending;
+    }
+
+    public void setDaySpending(int daySpending) {
+        this.daySpending = daySpending;
+    }
+
+    public Long getId() {
 		return id;
 	}
 

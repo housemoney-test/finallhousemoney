@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.demo.entity.Spending;
+import com.example.demo.entity.User;
 
 @Mapper
 public interface SpendingMapper {
@@ -17,6 +18,6 @@ public interface SpendingMapper {
 
 	Spending findById(int id);
 	
-	int getTodaySpending(String name);
+	User getTodaySpending(User entity);
 
 }

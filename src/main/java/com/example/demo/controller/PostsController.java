@@ -12,7 +12,7 @@ import com.example.demo.form.CreatePostForm;
 
 import com.example.demo.service.CreatePostService;
 import com.example.demo.service.GetTodaySpendingService;
-
+import com.example.demo.entity.*;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -29,9 +29,11 @@ public class PostsController{
     public String index(Model model, HttpSession session){
 //        session.setAttribute("session", session);
 //        String name = (String) session.getAttribute("User.name");
-        String name = (String) session.getAttribute("name");
-        int daySpending = getTodaySpendingService.getTodaySpending(name);
-        model.addAttribute("daySpending", daySpending);
+        User user = (User) session.getAttribute("user");
+        String name = user.getName(); 
+        User spendingUser = getTodaySpendingService.getTodaySpending(name);
+        int amount = spendingUser.getDaySpending();
+        model.addAttribute("amount",amount);
         return "posts/index";
     }
     
