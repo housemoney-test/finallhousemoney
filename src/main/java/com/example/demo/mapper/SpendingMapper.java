@@ -17,4 +17,6 @@ public interface SpendingMapper {
 
 	Spending findById(int id);
 
+	void deleteSpending(Spending spending);
+
 }

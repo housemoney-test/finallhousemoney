@@ -46,4 +46,7 @@
 		WHERE
 			id = #{id}
 	</update>
+	<delete id="deleteSpending">
+		DELETE FROM spendings WHERE id = #{id}
+	</delete>
 </mapper>

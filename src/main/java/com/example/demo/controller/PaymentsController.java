@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +23,7 @@ import com.example.demo.form.EditFixedCostForm;
 import com.example.demo.form.EditSpendingForm;
 import com.example.demo.service.CreateFixedCostService;
 import com.example.demo.service.CreateSpendingService;
+import com.example.demo.service.DeleteSpendingService;
 import com.example.demo.service.EditFixedCostService;
 import com.example.demo.service.EditSpendingService;
 import com.example.demo.service.FindFixedCostService;
@@ -46,6 +48,9 @@ public class PaymentsController {
 	private EditSpendingService editSpendingService;
 	
 	@Autowired
+	private DeleteSpendingService deleteSpendingService;
+	
+	@Autowired
 	private GetAllSpendingsService getAllSpendingsService;
 	
 	@Autowired
@@ -64,8 +69,25 @@ public class PaymentsController {
 	public String index(Model model) {
 		List<FixedCost> fixedCosts = getAllFixedCostsService.getAllFixedCosts();
 		model.addAttribute("fixedCosts", fixedCosts);
+		List<Spending> spendings = getAllSpendingsService.getAllSpendings();
+		model.addAttribute("spendings", spendings);
 		return "payments/index";
 	}
+	
+//	@DeleteMapping("/spending_index/{id}")
+//	public ResponseEntity deleteSpending(@PathVariable int id, Model model, Spending Spending) {
+//		int deleteSpending = deleteSpendingService.deleteSpending(id);
+//	    if (deleteSpending > 0) {
+//	      return ResponseEntity.ok().build();
+//	    } else {
+//	      return ResponseEntity.notFound().build();
+//	    }
+//	}
+	@PostMapping("/delete/{id}")
+	  public String deleteSpending(@PathVariable int id, Model model) {
+	    deleteSpendingService.deleteSpending(id);
+	    return "redirect:/payments/index";
+	  }
 	
 	
 	@GetMapping("/create")

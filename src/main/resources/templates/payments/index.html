@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<p>ユーザ一覧</p>
+
+<!--	<table>-->
+<!--		<tr th:each="fixedCost: ${fixedCosts}">-->
+<!--			<td th:text="${fixedCost.id}"></td>-->
+<!--			<td th:text="${fixedCost.categoryId}"></td>-->
+<!--			<td th:text="${fixedCost.amount}"></td>-->
+<!--			<td th:text="${fixedCost.userId}"></td>-->
+<!--			<td><a th:href="@{/payments/fixed(id=${fixedCost.id})}">編集</a></td>-->
+<!--		</tr>-->
+<!--	</table>-->
+	<table>
+		<tr th:each="spending: ${spendings}" th:object="${spending}">
+			<td th:text="${spending.id}"></td>
+			<td th:text="${spending.categoryId}"></td>
+			<td th:text="${spending.amount}"></td>
+			<td th:text="${spending.userId}"></td>
+<!--			<td><a class="btn btn-danger" th:href="@{/spending/delete/id=${spending.id}}">削除</a></td>-->
+			<td>
+				<form th:action="@{/payments/delete/{id}}" method="post">
+					<input type="hidden" name="id" th:value="${spending.id}"/>
+					<a class="btn btn-danger" th:href="@{/payments/delete(id=*{id})}">削除</a>
+				</form>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
