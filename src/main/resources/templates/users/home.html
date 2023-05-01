@@ -6,73 +6,173 @@
 	<title>FinalHouseMoney</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 	<link th:href="@{/css/home.css}" rel="styleSheet">
+	  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+          integrity="sha384-Mk/1GZJx6I5+P5oPxXyX6cGz+aEKzY2M2B+5PJv+6kZ4P4oqKKaAoub6Xp9CmzY6"
+          crossorigin="anonymous">
 	<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" th:src="@{/js/home.js}"></script>
 </head>
 
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="col-8">
-				<div class="card bg-dark text-white">
-					<img src="../css/images/white.png" class="card-img">
-					<div class="card-img-overlay">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-							content. This content is a little bit longer.</p>
-						<p class="card-text">Last updated 3 mins ago</p>
-					</div>
-				</div>
-				<h3>入金一覧</h3>
-				<table>
-					<thead>
-						<tr>
-							<th>日付</th>
-							<th>入金額</th>
-							<th>メモ</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td><button class="button">編集</button></td>
-						</tr>
-					</tbody>
-				</table>
-				<h3>出金一覧</h3>
-				<table>
-					<thead>
-						<tr>
-							<th>日付</th>
-							<th>出金額</th>
-							<th>メモ</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td><button class="button">編集</button></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="col-4">
-				<p>ユーザー名: <span th:text="${session.user.name}">ユーザー名</span></p>
-				<p>パスワード: <span th:text="${session.user.password}">パスワード</span></p>
-				<a th:href="@{/payments/create}">入出金登録</a>
-				<a th:href="@{/posts}">日記</a>
+	<div class="home-design">
+		<div class="frame">
+			<div class="plane-container">
+				<a th:href="@{/payments/create}">
+					<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+						x="0px" y="0px" width="1131.53px" height="379.304px" viewBox="0 0 1131.53 379.304"
+						enable-background="new 0 0 1131.53 379.304" xml:space="preserve" class="plane">
+						<polygon fill="#D8D8D8"
+							points="72.008,0 274.113,140.173 274.113,301.804 390.796,221.102 601.682,367.302 1131.53,0.223  " />
+						<polygon fill="#C4C4C3"
+							points="1131.53,0.223 274.113,140.173 274.113,301.804 390.796,221.102   " />
+					</svg></a>
+
 			</div>
 		</div>
+		<div class="clouds">
 
+			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+				y="0px" width="762px" height="331px" viewBox="0 0 762 331" enable-background="new 0 0 762 331"
+				xml:space="preserve" class="cloud big front slowest">
+				<path fill="#FFFFFF" d="M715.394,228h-16.595c0.79-5.219,1.201-10.562,1.201-16c0-58.542-47.458-106-106-106
+				c-8.198,0-16.178,0.932-23.841,2.693C548.279,45.434,488.199,0,417.5,0c-84.827,0-154.374,65.401-160.98,148.529
+				C245.15,143.684,232.639,141,219.5,141c-49.667,0-90.381,38.315-94.204,87H46.607C20.866,228,0,251.058,0,279.5
+				S20.866,331,46.607,331h668.787C741.133,331,762,307.942,762,279.5S741.133,228,715.394,228z" />
+			</svg>
+			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+				y="0px" width="762px" height="331px" viewBox="0 0 762 331" enable-background="new 0 0 762 331"
+				xml:space="preserve" class="cloud distant smaller">
+				<path fill="#FFFFFF" d="M715.394,228h-16.595c0.79-5.219,1.201-10.562,1.201-16c0-58.542-47.458-106-106-106
+				c-8.198,0-16.178,0.932-23.841,2.693C548.279,45.434,488.199,0,417.5,0c-84.827,0-154.374,65.401-160.98,148.529
+				C245.15,143.684,232.639,141,219.5,141c-49.667,0-90.381,38.315-94.204,87H46.607C20.866,228,0,251.058,0,279.5
+				S20.866,331,46.607,331h668.787C741.133,331,762,307.942,762,279.5S741.133,228,715.394,228z" />
+			</svg>
+
+			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+				y="0px" width="762px" height="331px" viewBox="0 0 762 331" enable-background="new 0 0 762 331"
+				xml:space="preserve" class="cloud small slow">
+				<path fill="#FFFFFF" d="M715.394,228h-16.595c0.79-5.219,1.201-10.562,1.201-16c0-58.542-47.458-106-106-106
+				c-8.198,0-16.178,0.932-23.841,2.693C548.279,45.434,488.199,0,417.5,0c-84.827,0-154.374,65.401-160.98,148.529
+				C245.15,143.684,232.639,141,219.5,141c-49.667,0-90.381,38.315-94.204,87H46.607C20.866,228,0,251.058,0,279.5
+				S20.866,331,46.607,331h668.787C741.133,331,762,307.942,762,279.5S741.133,228,715.394,228z" />
+			</svg>
+
+			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+				y="0px" width="762px" height="331px" viewBox="0 0 762 331" enable-background="new 0 0 762 331"
+				xml:space="preserve" class="cloud distant super-slow massive">
+				<path fill="#FFFFFF" d="M715.394,228h-16.595c0.79-5.219,1.201-10.562,1.201-16c0-58.542-47.458-106-106-106
+				c-8.198,0-16.178,0.932-23.841,2.693C548.279,45.434,488.199,0,417.5,0c-84.827,0-154.374,65.401-160.98,148.529
+				C245.15,143.684,232.639,141,219.5,141c-49.667,0-90.381,38.315-94.204,87H46.607C20.866,228,0,251.058,0,279.5
+				S20.866,331,46.607,331h668.787C741.133,331,762,307.942,762,279.5S741.133,228,715.394,228z" />
+			</svg>
+
+			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+				y="0px" width="762px" height="331px" viewBox="0 0 762 331" enable-background="new 0 0 762 331"
+				xml:space="preserve" class="cloud slower">
+				<path fill="#FFFFFF" d="M715.394,228h-16.595c0.79-5.219,1.201-10.562,1.201-16c0-58.542-47.458-106-106-106
+				c-8.198,0-16.178,0.932-23.841,2.693C548.279,45.434,488.199,0,417.5,0c-84.827,0-154.374,65.401-160.98,148.529
+				C245.15,143.684,232.639,141,219.5,141c-49.667,0-90.381,38.315-94.204,87H46.607C20.866,228,0,251.058,0,279.5
+				S20.866,331,46.607,331h668.787C741.133,331,762,307.942,762,279.5S741.133,228,715.394,228z" />
+			</svg>
+
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-8 mt-5">
+					<div class="card text-dark">
+						<img src="../css/images/white.png" class="card-img">
+						<div class="card-img-overlay">
+							<div class="row">
+								<h4 class="card-title col-12 title" style="text-align: right; margin-top: 120px;">Home</h4>
+								<p class="card-text title" style="text-align: right;">Have a nice day!!</p>
+
+							</div>
+						</div>
+					</div>
+					<h3 class="mt-4 title2">入金一覧</h3>
+					<table class="col-12 table table-bordered border-dark">
+						<thead>
+							<tr>
+								<th>日付</th>
+								<th>入金額</th>
+								<th>メモ</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<p>2023/05/01</p>
+								</td>
+								<td>
+									<p>10,000,000円</p>
+								</td>
+								<td>
+									<p>テストテストテスト</p>
+								</td>
+								<td><button class="btn btn-sm btn-primary text-white">編集</button></td>
+							</tr>
+						</tbody>
+					</table>
+					<h3 class="mt-4 title2">出金一覧</h3>
+					<table class="col-12 table table-bordered border-dark">
+						<thead>
+							<tr>
+								<th>日付</th>
+								<th>出金額</th>
+								<th>メモ</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<p>2023/05/01</p>
+								</td>
+								<td>
+									<p>10,000,000円</p>
+								</td>
+								<td>
+									<p>テストテストテスト</p>
+								</td>
+								<td><button class="btn btn-sm btn-primary">編集</button></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-4 mt-5">
+					<div class="text-center">
+						<h5 class="title2">～ログインユーザ情報～</h5>
+					</div>
+					<div class="row justify-content-center title2">
+						<div class="card shadow col-6 mt-2 border-dark">
+							<div class="row mt-3">
+								<p class="col-7">ユーザー名: </p>
+								<span th:text="${session.user.name}" class="col-5">ユーザー名</span>
+							</div>
+							<div class="row">
+								<p class="col-7">パスワード: </p>
+								<span th:text="${session.user.password}" class="col-5">パスワード</span>
+							</div>
+						</div>
+					</div>
+					<div class="row justify-content-center" style="margin-top: 100px;">
+						<div class="text-center">
+							<h5 class="title2">～Link～</h5>
+						</div>
+							<div class="card shadow col-6 mt-2 border-dark">
+								<div class="row mt-3 title2">
+									<p class="col-12">・<a th:href="@{/payments/create}">入出金登録</a></p>
+									<p class="col-12 mt-3">・<a th:href="@{/posts}">日記</a></p>
+								</div>
+							</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
 	</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
