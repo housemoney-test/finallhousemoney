@@ -24,6 +24,20 @@
 		WHERE 
 			id = #{id}
 	</select>
+<!--	<select id="getTodaySpending">-->
+<!--		SELECT -->
+<!--			sum(todayspending.amount)-->
+<!--		FROM -->
+<!--			spendings as todayspending-->
+<!--		INNER JOIN -->
+<!--			users  -->
+<!--		on -->
+<!--			todayspending.user_id = users.id-->
+<!--		WHERE -->
+<!--			users.name = #{name}-->
+<!--		and -->
+<!--			todayspending.created_at = DATE(NOW());		-->
+<!--	</select>-->
 	<insert id="create">
 		INSERT INTO spendings(
 			id,

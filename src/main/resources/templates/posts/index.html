@@ -12,7 +12,7 @@
 
 		<div class="upperPart">
 			<h3>ようこそ<span th:text="${session.user.name}"></span>さん</h3>
-			<h3 class="todayPayment">今日の出費: <!--thymeleaf spending.amount-->円</h3>
+			<h3 class="todayPayment">今日の出費: <span th:text="${daySpending}">円</h3>
 			<a th:href="@{users/home}" class="moveButton">ホームに戻る</a>
 			<a th:href="@{posts/create}" class="moveButton">日記をつける</a>
 		</div>

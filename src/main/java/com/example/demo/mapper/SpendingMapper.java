@@ -16,5 +16,7 @@ public interface SpendingMapper {
 	int edit(Spending spending);
 
 	Spending findById(int id);
+	
+	int getTodaySpending(String name);
 
 }
