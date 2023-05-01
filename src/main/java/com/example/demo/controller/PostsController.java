@@ -9,7 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.example.demo.form.CreatePostForm;
+
 import com.example.demo.service.CreatePostService;
+import com.example.demo.service.GetTodaySpendingService;
+import com.example.demo.entity.*;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/posts")
@@ -17,8 +21,19 @@ public class PostsController{
     
     @Autowired
     private CreatePostService createPostService;
+    
+    @Autowired
+    private GetTodaySpendingService getTodaySpendingService; 
+    
     @GetMapping
-    public String index(Model model){
+    public String index(Model model, HttpSession session){
+//        session.setAttribute("session", session);
+//        String name = (String) session.getAttribute("User.name");
+        User user = (User) session.getAttribute("user");
+        String name = user.getName(); 
+        User spendingUser = getTodaySpendingService.getTodaySpending(name);
+        int amount = spendingUser.getDaySpending();
+        model.addAttribute("amount",amount);
         return "posts/index";
     }
     

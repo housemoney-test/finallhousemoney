@@ -24,6 +24,20 @@
 		WHERE 
 			id = #{id}
 	</select>
+	<select id="getTodaySpending" resultType="com.example.demo.entity.User">
+		SELECT 
+			sum(todayspending.amount) as daySpending
+		FROM 
+			spendings as todayspending
+		INNER JOIN 
+			users  
+		on 
+			todayspending.user_id = users.id
+		WHERE 
+			users.name = #{name} 
+			AND DATE_FORMAT(todayspending.created_at, '%Y-%m-%d') = CURDATE()
+			limit 1;
+	</select>
 	<insert id="create">
 		INSERT INTO spendings(
 			id,
