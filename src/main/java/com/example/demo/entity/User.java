@@ -6,19 +6,6 @@ public class User {
 
     private String name;
 
-<<<<<<< HEAD
-	private String password;
-	
-	private String phoneNumber;
-	
-	private String loginErr;
-	
-	private int daySpending;
-	
-	private int income;
-	
-	private int saving;
-=======
     private String password;
     
     private String phoneNumber;
@@ -26,7 +13,11 @@ public class User {
     private String loginErr;
     
     private int daySpending;
->>>>>>> origin/master
+    
+    private int income;
+    
+    private int saving;
+    
 
     public int getDaySpending() {
         return daySpending;
@@ -64,12 +55,19 @@ public class User {
         return phoneNumber;
     }
 
-<<<<<<< HEAD
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-	
-	public int getIncome() {
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getLoginErr() {
+        return loginErr;
+    }
+
+    public void setLoginErr(String loginErr) {
+        this.loginErr = loginErr;
+    }
+    
+    public int getIncome() {
 		return income;
 	}
 	
@@ -84,20 +82,6 @@ public class User {
 	public void setSaving(int saving) {
 		this.saving = saving;
 	}
-
-=======
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
->>>>>>> origin/master
-
-    public String getLoginErr() {
-        return loginErr;
-    }
-
-    public void setLoginErr(String loginErr) {
-        this.loginErr = loginErr;
-    }
 
     
 }

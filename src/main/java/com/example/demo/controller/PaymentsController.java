@@ -15,25 +15,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.FixedCost;
+import com.example.demo.entity.Income;
 import com.example.demo.entity.Spending;
-import com.example.demo.entity.User;
 import com.example.demo.form.CreateFixedCostForm;
+import com.example.demo.form.CreateIncomeForm;
 import com.example.demo.form.CreateSpendingForm;
 import com.example.demo.form.EditFixedCostForm;
+import com.example.demo.form.EditIncomeForm;
 import com.example.demo.form.EditSpendingForm;
-import com.example.demo.form.EditUserForm;
 import com.example.demo.service.CreateFixedCostService;
 import com.example.demo.service.CreateSpendingService;
 import com.example.demo.service.DeleteSpendingService;
 import com.example.demo.service.EditFixedCostService;
 import com.example.demo.service.EditSpendingService;
-import com.example.demo.service.EditUserService;
 import com.example.demo.service.FindFixedCostService;
 import com.example.demo.service.FindSpendingService;
-import com.example.demo.service.FindUserService;
 import com.example.demo.service.GetAllFixedCostsService;
 import com.example.demo.service.GetAllSpendingsService;
+import com.example.demo.service.IncomeService;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 
@@ -67,12 +68,15 @@ public class PaymentsController {
 	
 	@Autowired
 	private CreateFixedCostService createFixedCostService;
-//	
-	@Autowired
-	private FindUserService findUserService;
 	
 	@Autowired
-	private EditUserService editUserService;
+	private IncomeService incomeService;
+//	
+//	@Autowired
+//	private FindUserService findUserService;
+	
+//	@Autowired
+//	private EditUserService editUserService;
 	
 	@GetMapping("/index")
 	public String index(Model model) {
@@ -102,13 +106,13 @@ public class PaymentsController {
 	  }
 	
 	
-	@GetMapping("/create")
+	@GetMapping("/create_spending")
 	public String createSpending(Model model) {
 		model.addAttribute("createSpendingForm", new CreateSpendingForm());
 		return "payments/create";
 	}
 	
-	@PostMapping("/create")
+	@PostMapping("/create_spending")
 	public String createSpending(@Valid @ModelAttribute("createSpendingForm") CreateSpendingForm createSpendingForm, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 	        List<String> errorList = new ArrayList<String>();
@@ -120,32 +124,53 @@ public class PaymentsController {
 			return "payments/create";
 		}
 		createSpendingService.createSpending(createSpendingForm);
+		return "redirect:payments/index";
+	}
+	
+	@GetMapping("/create_income")
+	public String createIncome(Model model) {
+		model.addAttribute("createIncomeForm", new CreateIncomeForm());
 		return "payments/create";
 	}
 	
+	@PostMapping("/create_income")
+	public String createIncome(@Valid @ModelAttribute("createIncome") CreateIncomeForm createIncomeForm, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+	        List<String> errorList = new ArrayList<String>();
+            for (ObjectError error : result.getAllErrors()) {
+                errorList.add(error.getDefaultMessage());
+            }
+            model.addAttribute("validationError", errorList);
+			model.addAttribute("createIncomeForm", createIncomeForm);
+			return "redirect:payments/fixed";
+		}
+		incomeService.createIncome(createIncomeForm);
+		return "redirect:payments/create";
+	}
+	
 	@GetMapping("/income_edit")
-	public String incomeEdit(@RequestParam int id, EditUserForm editUserForm, Model model) {
-		//User型にgetFindByIdの戻り値を格納
-	    User user = findUserService.getFindById(id);
-	    //user型にUser型の情報を入れかえる
-	    editUserForm.setId(user.getId());
-	    editUserForm.setName(user.getName());
-	    editUserForm.setPhoneNumber(user.getPhoneNumber());
-	    editUserForm.setIncome(user.getIncome());
-	    editUserForm.setSaving(user.getSaving());
-        model.addAttribute("editUserForm", editUserForm);
-		return "payments/spendingEdit";
+	public String incomeEdit(@RequestParam int id, EditIncomeForm editIncomeForm, Model model) {
+		List<Income> incomes = incomeService.getAllIncomes();
+		model.addAttribute("incomes", incomes);
+		//Income型にgetFindByIdの戻り値を格納
+	    Income income = incomeService.getFindById(id);
+	    //income型にIncome型の情報を入れかえる
+	    editIncomeForm.setId(income.getId());
+	    editIncomeForm.setCategoryName(income.getCategoryName());
+	    editIncomeForm.setAmount(income.getAmount());
+        model.addAttribute("editIncomerForm", editIncomeForm);
+		return "payments/incomeEdit";
 	}
 	
 	@PostMapping("income_edit")
-	public String incomeEdit(@Valid @ModelAttribute("editUserForm") EditUserForm editUserForm, BindingResult result, Model model) {
+	public String incomeEdit(@Valid @ModelAttribute("editIncomeForm") EditIncomeForm editIncomeForm, BindingResult result, Model model) {
 		if (result.hasErrors()) {
-            model.addAttribute("editUserForm", editUserForm);
+            model.addAttribute("editIncomeForm", editIncomeForm);
             return "redirect:/payments/incomeEdit";
         }
-		model.addAttribute("editUserForm", editUserForm);
-		editUserService.editIncome(editUserForm);
-		return "redirect:/users/index";
+		model.addAttribute("editIncomeForm", editIncomeForm);
+		incomeService.editIncome(editIncomeForm);
+		return "redirect:/payments/index";
 	}
 	
 	
@@ -175,7 +200,9 @@ public class PaymentsController {
 	}
 	
 	@GetMapping("/fixed")
-	public String createFixedCost(Model model) {
+	public String createFixedCost(Model model, HttpSession session) {
+//		CreateFixedCostForm createFixedCostForm = (CreateFixedCostForm) session.getAttribute("createFixedForm");
+		
 		model.addAttribute("createFixedCostForm", new CreateFixedCostForm());
 		return "payments/fixed";
 	}
@@ -224,62 +251,4 @@ public class PaymentsController {
 		return "redirect:/payments/index";
 	}
 	
-	
-//	@PostMapping("/fixed")
-//	public String handleFormSubmit(@RequestParam("action") String action, @ModelAttribute("form") Object form, 
-//			@RequestParam(value = "id", required = false) Integer id, BindingResult result, Model model) {
-//	
-//		if ("create".equals(action)) {
-//			
-//			if (!(form instanceof CreateFixedCostForm)) {
-//			// CreateFixedCostForm以外が渡された場合はエラーとする
-//			result.reject("error.invalidForm");
-//			return "payments/fixed";
-//			}
-//			// createアクションのロジックを実装
-//			CreateFixedCostForm createFixedCostForm = (CreateFixedCostForm) form;
-//			if (result.hasErrors()) {
-//		        List<String> errorList = new ArrayList<String>();
-//	            for (ObjectError error : result.getAllErrors()) {
-//	                errorList.add(error.getDefaultMessage());
-//	            }
-//	            model.addAttribute("validationError", errorList);
-//				model.addAttribute("createFixedCostForm", createFixedCostForm);
-//				return "payments/fixed";
-//			}
-//			createFixedCostService.createFixedCost((CreateFixedCostForm) form);
-//			return "redirect:/users/index";
-//			
-//		} else if ("edit".equals(action)) {
-//			if (!(form instanceof EditFixedCostForm)) {
-//			// EditFixedCostForm以外が渡された場合はエラーとする
-//			result.reject("error.invalidForm");
-//			return "payments/fixed";
-//			}
-//			if (id == null) {
-//			// idが指定されていない場合はエラーとする
-//			result.reject("error.invalidId");
-//			return "payments/fixed";
-//			}
-//			// editアクションのロジックを実装
-//			EditFixedCostForm editFixedCostForm = (EditFixedCostForm) form;
-//	        editFixedCostForm.setId(id);
-//			List<FixedCost> fixedCosts = getAllFixedCostsService.getAllFixedCosts();
-//			if (result.hasErrors()) {
-//	            model.addAttribute("editFixedCostForm", editFixedCostForm);
-//	            return "redirect:/payments/fixed";
-//	        }
-//			model.addAttribute("fixedCosts", fixedCosts);
-//			
-//			editFixedCostForm.setId(id);
-//			editFixedCostService.edit(editFixedCostForm);
-//			return "redirect:/users/index";
-//			
-//		} else {
-//		// アクションが指定されていない場合はエラーとする
-//		result.reject("error.invalidAction");
-//		return "payments/fixed";
-//		}
-//	}
-//	
 }

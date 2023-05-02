@@ -17,15 +17,20 @@
 				</div>
 			
 				<div class="form-body">
-					<form id="incomeForm" >
+					<form id="incomeForm" th:action="@{/payments/create_income}" th:object="${createIncomeForm}" th:method="POST">
 						<div class="form-row">
 							<label for="title">カテゴリー</label>
-							<input type="text" />
+							<input type="text" th:field="*{categoryName}" />
 						</div>
 			
 						<div class="form-row">
 							<label for="body">入金額</label>
-							<input type="text" />
+							<input type="text" th:field="*{amount}" />
+						</div>
+						
+						<div class="form-row">
+							<label for="body">ユーザーID</label>
+							<input type="text" th:field="*{userId}" />
 						</div>
 						
 						<div class="form-button">
@@ -33,7 +38,7 @@
 						</div>
 					</form>
 			
-					<form id="spendingForm" th:action="@{/payments/create}" th:object="${createSpendingForm}" th:method="POST">
+					<form id="spendingForm" th:action="@{/payments/create_spending}" th:object="${createSpendingForm}" th:method="POST">
 						<div th:if="${validationError}" th:each="error : ${validationError}">
 					      <label class="text-danger" th:text="${error}"></label>
 					    </div>

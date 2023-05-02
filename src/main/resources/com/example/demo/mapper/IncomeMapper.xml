@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.IncomeMapper">
+	<select id="findAll" resultType="com.example.demo.entity.Income">
+		SELECT
+			id,
+			category_name AS categoryName,
+			amount,
+			user_id
+		FROM
+			incomes
+	</select>
+	<select id="findById" resultType="com.example.demo.entity.Income">
+		SELECT
+		 	*
+		FROM
+			incomes
+		WHERE 
+			id = #{id}
+	</select>
+	<insert id="createIncome">
+		INSERT INTO incomes(
+			id,
+			category_name,
+			amount,
+			user_id
+		) VALUES (
+			#{id},
+			#{categoryName},
+			#{amount},
+			#{userId}
+		)
+	</insert>
+	<update id="editIncome">
+		UPDATE incomes SET
+			category_name = #{categoryName},
+			amount = #{amount},
+			user_id = #{userId},
+			updated_at = NOW()
+		WHERE
+			id = #{id}
+	</update>
+	<delete id="deleteIncome">
+		DELETE FROM incoms WHERE id = #{id}
+	</delete>
+</mapper>

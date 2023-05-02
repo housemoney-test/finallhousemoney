@@ -14,6 +14,9 @@
 			<div class="col first-element">
 				<form id="spendingForm" th:action="@{/payments/spending_edit}" th:object="${editSpendingForm}" th:method="POST">
 					<input type="hidden" th:field="*{id}" th:value="${id}" />
+					<div th:if="${validationError}" th:each="error : ${validationError}">
+					      <label class="text-danger" th:text="${error}"></label>
+					    </div>
 					<div class="form-row">
 						<label for="title">カテゴリー</label>
 						<select type="text" th:field="*{categoryId}">
