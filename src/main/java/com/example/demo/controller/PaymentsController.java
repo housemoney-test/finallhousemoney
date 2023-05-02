@@ -22,6 +22,7 @@ import com.example.demo.form.EditFixedCostForm;
 import com.example.demo.form.EditSpendingForm;
 import com.example.demo.service.CreateFixedCostService;
 import com.example.demo.service.CreateSpendingService;
+import com.example.demo.service.DeleteSpendingService;
 import com.example.demo.service.EditFixedCostService;
 import com.example.demo.service.EditSpendingService;
 import com.example.demo.service.FindFixedCostService;
@@ -46,6 +47,9 @@ public class PaymentsController {
 	private EditSpendingService editSpendingService;
 	
 	@Autowired
+	private DeleteSpendingService deleteSpendingService;
+	
+	@Autowired
 	private GetAllSpendingsService getAllSpendingsService;
 	
 	@Autowired
@@ -64,8 +68,27 @@ public class PaymentsController {
 	public String index(Model model) {
 		List<FixedCost> fixedCosts = getAllFixedCostsService.getAllFixedCosts();
 		model.addAttribute("fixedCosts", fixedCosts);
+		List<Spending> spendings = getAllSpendingsService.getAllSpendings();
+		model.addAttribute("spendings", spendings);
 		return "payments/index";
 	}
+	
+	
+	
+//	@DeleteMapping("/spending_index/{id}")
+//	public ResponseEntity deleteSpending(@PathVariable int id, Model model, Spending Spending) {
+//		int deleteSpending = deleteSpendingService.deleteSpending(id);
+//	    if (deleteSpending > 0) {
+//	      return ResponseEntity.ok().build();
+//	    } else {
+//	      return ResponseEntity.notFound().build();
+//	    }
+//	}
+	@PostMapping("/spending/{id}/delete")
+	  public String deleteSpending(@RequestParam int id) {
+	    deleteSpendingService.deleteSpending(id);
+	    return "redirect:/payments/index";
+	  }
 	
 	
 	@GetMapping("/create")
@@ -88,6 +111,29 @@ public class PaymentsController {
 		createSpendingService.create(form);
 		return "payments/create";
 	}
+	
+//	@GetMapping("/income_edit")
+//	public String incomeEdit(@RequestParam int id, EditUserForm editUserForm, Model model) {
+//		//Spending型にgetFindByIdの戻り値を格納
+//	    User user = findUserService.getFindById(id);
+//	    //spendingr型にSpending型の情報を入れかえる
+//	    editUserForm.setCategoryId(user.getCategoryId());
+//	    editUserForm.setAmount(user.getAmount());
+//        model.addAttribute("editUserForm", editUserForm);
+//		return "payments/spendingEdit";
+//	}
+//	
+//	@PostMapping("income_edit")
+//	public String incomeEdit(@Valid @ModelAttribute("editUserForm") EditUserForm editUserForm, BindingResult result, Model model) {
+//		if (result.hasErrors()) {
+//            model.addAttribute("editUserForm", editUserForm);
+//            return "redirect:/payments/spendingEdit";
+//        }
+//		model.addAttribute("editUserForm", editUserForm);
+//		editIncomeService.edit(editUserForm);
+//		return "redirect:/users/index";
+//	}
+	
 	
 	@GetMapping("/spending_edit")
 	public String spendingEdit(@RequestParam int id, EditSpendingForm editSpendingForm, Model model) {

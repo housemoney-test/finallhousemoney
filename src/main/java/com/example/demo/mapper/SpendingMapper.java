@@ -20,4 +20,6 @@ public interface SpendingMapper {
 	
 	User getTodaySpending(User entity);
 
+	void deleteSpending(Spending spending);
+
 }
