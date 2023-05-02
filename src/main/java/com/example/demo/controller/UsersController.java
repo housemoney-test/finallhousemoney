@@ -23,67 +23,67 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("/users")
 public class UsersController {
 
-	@Autowired
-	private GetAllUsersService getAllUsersService;
+    @Autowired
+    private GetAllUsersService getAllUsersService;
 
-	@GetMapping("/index")
-	public String index(Model model) {
-		List<User> users = getAllUsersService.getAllUsers();
-		model.addAttribute("users", users);
-		return "users/index";
-	}
-	
-	@GetMapping("/home")
-	public String home(Model model, HttpSession session) {
-	    // HttpSession から createUserForm を取得
-	    CreateUserForm createUserForm = (CreateUserForm) session.getAttribute("createUserForm");
-	    if(createUserForm != null) {
-	    	//新規登録の場合はCreateUserFormをModelにセット
-	    	model.addAttribute("user", createUserForm);
-	    } else {
-	    	 LoginUserForm loginUserForm = (LoginUserForm) session.getAttribute("loginUserForm");
-	    	 //ログインの場合はLoginUserFormをModelにセット
-	    	 model.addAttribute("user", loginUserForm);
-	    }
-	  
-		return "users/home";
-	}
-	
-	@GetMapping("/incomeEdit")
-	public String edit(Model model, HttpSession session) {
-		 User user = (User) session.getAttribute("user");
-			
-		model.addAttribute("user", user);
-			return "users/incomeEdit";
+    @GetMapping("/index")
+    public String index(Model model) {
+        List<User> users = getAllUsersService.getAllUsers();
+        model.addAttribute("users", users);
+        return "users/index";
+    }
+    
+    @GetMapping("/home")
+    public String home(Model model, HttpSession session) {
+        // HttpSession から createUserForm を取得
+        CreateUserForm createUserForm = (CreateUserForm) session.getAttribute("createUserForm");
+        if(createUserForm != null) {
+            //新規登録の場合はCreateUserFormをModelにセット
+            model.addAttribute("user", createUserForm);
+        } else {
+             LoginUserForm loginUserForm = (LoginUserForm) session.getAttribute("loginUserForm");
+             //ログインの場合はLoginUserFormをModelにセット
+             model.addAttribute("user", loginUserForm);
+        }
+      
+        return "users/home";
+    }
+    
+    @GetMapping("/incomeEdit")
+    public String edit(Model model, HttpSession session) {
+         User user = (User) session.getAttribute("user");
+            
+        model.addAttribute("user", user);
+            return "users/incomeEdit";
 
-		}
-	
-	
-	@PostMapping("/incomeEdit")
-	public String edit(@ModelAttribute("loginUserForm") LoginUserForm loginUserForm,
-			BindingResult result, Model model, HttpSession session) {
+        }
+    
+    
+    @PostMapping("/incomeEdit")
+    public String edit(@ModelAttribute("loginUserForm") LoginUserForm loginUserForm,
+            BindingResult result, Model model, HttpSession session) {
 
-			return "users/incomeEdit";
+            return "users/incomeEdit";
 
-		}
-	
-	@GetMapping("/paymentsEdit")
-	public String paymentsEdit(Model model, HttpSession session) {
-		 User user = (User) session.getAttribute("user");
-			
-		model.addAttribute("user", user);
-			return "users/paymentsEdit";
+        }
+    
+    @GetMapping("/paymentsEdit")
+    public String paymentsEdit(Model model, HttpSession session) {
+         User user = (User) session.getAttribute("user");
+            
+        model.addAttribute("user", user);
+            return "users/paymentsEdit";
 
-		}
-	
-	
-	@PostMapping("/paymentsEdit")
-	public String paymentsEdit(@ModelAttribute("loginUserForm") LoginUserForm loginUserForm,
-			BindingResult result, Model model, HttpSession session) {
+        }
+    
+    
+    @PostMapping("/paymentsEdit")
+    public String paymentsEdit(@ModelAttribute("loginUserForm") LoginUserForm loginUserForm,
+            BindingResult result, Model model, HttpSession session) {
 
-			return "users/paymentsEdit";
+            return "users/paymentsEdit";
 
-		}
-	
-	
+        }
+    
+    
 }

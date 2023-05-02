@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demo.entity.Post;
 import com.example.demo.entity.User;
 import com.example.demo.form.CreatePostForm;
+import com.example.demo.form.EditPostForm;
 import com.example.demo.service.CreatePostService;
 import com.example.demo.service.GetAllPostsService;
 import com.example.demo.service.GetTodaySpendingService;
@@ -63,5 +64,10 @@ public class PostsController{
     public String create(@ModelAttribute("form") CreatePostForm form, Model model) {
         createPostService.create(form);
         return "redirect:/posts";
+    }
+    
+    @GetMapping("edit")
+    public String edit(@ModelAttribute("form") EditPostForm form, Model model) {
+     return "posts/edit";   
     }
 }
