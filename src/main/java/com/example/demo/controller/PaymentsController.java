@@ -10,7 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -74,6 +73,8 @@ public class PaymentsController {
 		return "payments/index";
 	}
 	
+	
+	
 //	@DeleteMapping("/spending_index/{id}")
 //	public ResponseEntity deleteSpending(@PathVariable int id, Model model, Spending Spending) {
 //		int deleteSpending = deleteSpendingService.deleteSpending(id);
@@ -83,8 +84,8 @@ public class PaymentsController {
 //	      return ResponseEntity.notFound().build();
 //	    }
 //	}
-	@PostMapping("/delete/{id}")
-	  public String deleteSpending(@PathVariable int id, Model model) {
+	@PostMapping("/spending/{id}/delete")
+	  public String deleteSpending(@RequestParam int id) {
 	    deleteSpendingService.deleteSpending(id);
 	    return "redirect:/payments/index";
 	  }
@@ -110,6 +111,29 @@ public class PaymentsController {
 		createSpendingService.create(form);
 		return "payments/create";
 	}
+	
+//	@GetMapping("/income_edit")
+//	public String incomeEdit(@RequestParam int id, EditUserForm editUserForm, Model model) {
+//		//Spending型にgetFindByIdの戻り値を格納
+//	    User user = findUserService.getFindById(id);
+//	    //spendingr型にSpending型の情報を入れかえる
+//	    editUserForm.setCategoryId(user.getCategoryId());
+//	    editUserForm.setAmount(user.getAmount());
+//        model.addAttribute("editUserForm", editUserForm);
+//		return "payments/spendingEdit";
+//	}
+//	
+//	@PostMapping("income_edit")
+//	public String incomeEdit(@Valid @ModelAttribute("editUserForm") EditUserForm editUserForm, BindingResult result, Model model) {
+//		if (result.hasErrors()) {
+//            model.addAttribute("editUserForm", editUserForm);
+//            return "redirect:/payments/spendingEdit";
+//        }
+//		model.addAttribute("editUserForm", editUserForm);
+//		editIncomeService.edit(editUserForm);
+//		return "redirect:/users/index";
+//	}
+	
 	
 	@GetMapping("/spending_edit")
 	public String spendingEdit(@RequestParam int id, EditSpendingForm editSpendingForm, Model model) {

@@ -31,4 +31,12 @@
 		WHERE
 			name=#{name}
 	</select>
+	<update id="editIncome">
+	UPDATE users SET
+		category_id = #{categoryId},
+		amount = #{amount},
+		updated_at = NOW()
+	WHERE
+		id = #{id}
+	</update>
 </mapper>

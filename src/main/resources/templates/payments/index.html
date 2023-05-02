@@ -24,9 +24,9 @@
 			<td th:text="${spending.userId}"></td>
 <!--			<td><a class="btn btn-danger" th:href="@{/spending/delete/id=${spending.id}}">削除</a></td>-->
 			<td>
-				<form th:action="@{/payments/delete/{id}}" method="post">
+				<form th:action="@{/payments/{id}/delete}" method="post">
 					<input type="hidden" name="id" th:value="${spending.id}"/>
-					<a class="btn btn-danger" th:href="@{/payments/delete(id=*{id})}">削除</a>
+					<a class="btn btn-danger" th:href="@{/payments/{id}/delete}">削除</a>
 				</form>
 			</td>
 		</tr>
