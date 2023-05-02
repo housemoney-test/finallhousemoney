@@ -5,6 +5,15 @@ public class UserForm {
 	private String name;
 	private String password;
 	private String loginErr;
+	private int id;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getLoginErr() {
 		return loginErr;

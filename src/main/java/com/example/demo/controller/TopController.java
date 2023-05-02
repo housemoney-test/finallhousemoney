@@ -76,15 +76,20 @@ public class TopController {
 	public String create(@ModelAttribute("createUserForm") CreateUserForm createUserForm, BindingResult result,
 			Model model, HttpSession session) {
 		
-		//ユーザー情報をデータベースに登録する
-		createUserService.create(createUserForm);
-		
-		//セッションにユーザー情報を保持する
-		User user = loginUserService.setUser(createUserForm);
-		session.setAttribute("user", user);
-		model.addAttribute("user", user);
-		return "users/home";
+		// ユーザー情報をデータベースに登録する
+	    createUserService.create(createUserForm);
+	    
+	 // フォームにセットされたid情報を取得し、セッションにユーザー情報を保持する
+	    User user = new User();
+	    user.setId(createUserForm.getId());
+	    user.setName(createUserForm.getName());
+	    user.setPassword(createUserForm.getPassword());
+	    session.setAttribute("user", user);
+	    model.addAttribute("user", user);
+	    
+	    return "users/home";
 	}
+	
 
 	@GetMapping("/signUp")
 	public String create(Model model) {

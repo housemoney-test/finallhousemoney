@@ -155,6 +155,10 @@
 								<span th:text="${session.user.password}" class="col-5">パスワード</span>
 							</div>
 							<div class="row">
+								<p class="col-7">ID: </p>
+								<span th:text="${session.user.id}" class="col-5">ID</span>
+							</div>
+							<div class="row">
 								<td><button><a th:href="@{/logout}" class="btn btn-sm btn-primary text-white">ログアウト</a></buttonbutton></td>
 							</div>
 						</div>

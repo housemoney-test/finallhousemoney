@@ -16,14 +16,18 @@ public class CreateUserService {
 	private UserMapper mapper;
 	
 	@Transactional
-	public int create(CreateUserForm form) {
+	public User create(CreateUserForm form) {
 		User entity = new User();
 		entity.setName(form.getName());
 		entity.setPassword(form.getPassword());
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		entity.setPassword(encoder.encode(form.getPassword()));
 		
-		return mapper.create(entity);
+		// 新しいユーザーをデータベースに挿入し、その結果として得られたidをentityにセットする
+        mapper.create(entity);
+        form.setId(entity.getId());
+        
+        return entity;
 	}
 
 }
