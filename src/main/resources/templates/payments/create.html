@@ -17,7 +17,7 @@
 				</div>
 			
 				<div class="form-body">
-					<form id="incomeForm">
+					<form id="incomeForm" >
 						<div class="form-row">
 							<label for="title">カテゴリー</label>
 							<input type="text" />
@@ -33,7 +33,7 @@
 						</div>
 					</form>
 			
-					<form id="spendingForm" th:action="@{/payments/create}" th:object="${form}" th:method="POST">
+					<form id="spendingForm" th:action="@{/payments/create}" th:object="${createSpendingForm}" th:method="POST">
 						<div th:if="${validationError}" th:each="error : ${validationError}">
 					      <label class="text-danger" th:text="${error}"></label>
 					    </div>

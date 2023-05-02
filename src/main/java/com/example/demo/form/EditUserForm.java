@@ -1,7 +1,9 @@
-package com.example.demo.entity;
+package com.example.demo.form;
 
-public class User {
+import java.io.Serializable;
 
+public class EditUserForm implements Serializable {
+	
 	private Long id;
 
 	private String name;
@@ -83,5 +85,4 @@ public class User {
 		this.loginErr = loginErr;
 	}
 
-	
 }

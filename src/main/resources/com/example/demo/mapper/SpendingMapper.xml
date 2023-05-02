@@ -38,7 +38,7 @@
 			AND DATE_FORMAT(todayspending.created_at, '%Y-%m-%d') = CURDATE()
 			limit 1;
 	</select>
-	<insert id="create">
+	<insert id="createSpending">
 		INSERT INTO spendings(
 			id,
 			category_id,
