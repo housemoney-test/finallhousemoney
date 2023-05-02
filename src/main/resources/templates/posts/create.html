@@ -12,6 +12,7 @@
 		
 		<div class="form-body">
 			<form th:action="@{/posts/create}" th:object="${form}" method="POST">
+				<input type="hidden" name="user_id" th:value="1">
 				<div class="form-row">
 					<label for="title">簡潔に書くと？</label>
 					<input type="text" th:field="*{title}" name="title"><br>
