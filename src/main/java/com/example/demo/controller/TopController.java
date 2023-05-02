@@ -89,7 +89,6 @@ public class TopController {
 	    
 	    return "users/home";
 	}
-	
 
 	@GetMapping("/signUp")
 	public String create(Model model) {
