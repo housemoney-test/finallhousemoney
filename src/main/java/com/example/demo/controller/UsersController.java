@@ -5,7 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.entity.User;
@@ -46,6 +49,41 @@ public class UsersController {
 		return "users/home";
 	}
 	
+	@GetMapping("/incomeEdit")
+	public String edit(Model model, HttpSession session) {
+		 User user = (User) session.getAttribute("user");
+			
+		model.addAttribute("user", user);
+			return "users/incomeEdit";
+
+		}
+	
+	
+	@PostMapping("/incomeEdit")
+	public String edit(@ModelAttribute("loginUserForm") LoginUserForm loginUserForm,
+			BindingResult result, Model model, HttpSession session) {
+
+			return "users/incomeEdit";
+
+		}
+	
+	@GetMapping("/paymentsEdit")
+	public String paymentsEdit(Model model, HttpSession session) {
+		 User user = (User) session.getAttribute("user");
+			
+		model.addAttribute("user", user);
+			return "users/paymentsEdit";
+
+		}
+	
+	
+	@PostMapping("/paymentsEdit")
+	public String paymentsEdit(@ModelAttribute("loginUserForm") LoginUserForm loginUserForm,
+			BindingResult result, Model model, HttpSession session) {
+
+			return "users/paymentsEdit";
+
+		}
 	
 	
 }
