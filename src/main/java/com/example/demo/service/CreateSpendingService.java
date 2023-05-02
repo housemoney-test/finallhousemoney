@@ -15,12 +15,12 @@ public class CreateSpendingService {
     private SpendingMapper spendingMapper;
     
     @Transactional
-	public int create(CreateSpendingForm form) {
+	public int createSpending(CreateSpendingForm createSpendingForm) {
 		Spending entity = new Spending();
-		entity.setCategoryId(form.getCategoryId());
-		entity.setAmount(form.getAmount());
-		entity.setUserId(form.getUserId());
-		return spendingMapper.create(entity);
+		entity.setCategoryId(createSpendingForm.getCategoryId());
+		entity.setAmount(createSpendingForm.getAmount());
+		entity.setUserId(createSpendingForm.getUserId());
+		return spendingMapper.createSpending(entity);
 	}
     
 }

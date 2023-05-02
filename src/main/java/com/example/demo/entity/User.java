@@ -13,6 +13,11 @@ public class User {
     private String loginErr;
     
     private int daySpending;
+    
+    private int income;
+    
+    private int saving;
+    
 
     public int getDaySpending() {
         return daySpending;
@@ -61,6 +66,22 @@ public class User {
     public void setLoginErr(String loginErr) {
         this.loginErr = loginErr;
     }
+    
+    public int getIncome() {
+		return income;
+	}
+	
+	public void setIncome(int income) {
+		this.income = income;
+	}
+	
+	public int getSaving() {
+		return saving;
+	}
+	
+	public void setSaving(int saving) {
+		this.saving = saving;
+	}
 
     
 }

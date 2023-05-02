@@ -14,8 +14,6 @@ public interface UserMapper {
 	int create(User entity);
 	User login(User entity);
 
-	int editIncome(User user);
-
 	User findById(Integer id);
 	User findByName(String name);
 	

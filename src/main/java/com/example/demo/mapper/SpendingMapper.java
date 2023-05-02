@@ -12,7 +12,7 @@ public interface SpendingMapper {
 
 	List<Spending> findAll();
 
-	int create(Spending entity);
+	int createSpending(Spending entity);
 
 	int edit(Spending spending);
 
