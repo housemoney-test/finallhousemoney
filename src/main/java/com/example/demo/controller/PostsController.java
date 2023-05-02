@@ -1,18 +1,22 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
+import com.example.demo.entity.Post;
+import com.example.demo.entity.User;
 import com.example.demo.form.CreatePostForm;
-
 import com.example.demo.service.CreatePostService;
+import com.example.demo.service.GetAllPostsService;
 import com.example.demo.service.GetTodaySpendingService;
-import com.example.demo.entity.*;
+
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -23,7 +27,10 @@ public class PostsController{
     private CreatePostService createPostService;
     
     @Autowired
-    private GetTodaySpendingService getTodaySpendingService; 
+    private GetTodaySpendingService getTodaySpendingService;
+    
+    @Autowired
+    private GetAllPostsService getAllPostsService;
     
     @GetMapping
     public String index(Model model, HttpSession session){
@@ -38,6 +45,8 @@ public class PostsController{
         } else {
             model.addAttribute("amount",0);
         }
+        List<Post> posts = getAllPostsService.getAllPosts(name);
+        model.addAttribute("posts", posts);
         return "posts/index";
     }
     
