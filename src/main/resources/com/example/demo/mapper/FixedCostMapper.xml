@@ -24,7 +24,7 @@
 		WHERE 
 			id = #{id}
 	</select>
-	<insert id="create">
+	<insert id="createFixedCost">
 		INSERT INTO fixed_costs(
 			id,
 			category_id,

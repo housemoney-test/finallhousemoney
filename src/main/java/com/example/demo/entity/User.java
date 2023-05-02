@@ -2,10 +2,11 @@ package com.example.demo.entity;
 
 public class User {
 
-	private Long id;
+    private int id;
 
-	private String name;
+    private String name;
 
+<<<<<<< HEAD
 	private String password;
 	
 	private String phoneNumber;
@@ -17,8 +18,17 @@ public class User {
 	private int income;
 	
 	private int saving;
+=======
+    private String password;
+    
+    private String phoneNumber;
+    
+    private String loginErr;
+    
+    private int daySpending;
+>>>>>>> origin/master
 
-	public int getDaySpending() {
+    public int getDaySpending() {
         return daySpending;
     }
 
@@ -26,34 +36,35 @@ public class User {
         this.daySpending = daySpending;
     }
 
-    public Long getId() {
-		return id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
+<<<<<<< HEAD
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
@@ -74,14 +85,19 @@ public class User {
 		this.saving = saving;
 	}
 
+=======
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+>>>>>>> origin/master
 
-	public String getLoginErr() {
-		return loginErr;
-	}
+    public String getLoginErr() {
+        return loginErr;
+    }
 
-	public void setLoginErr(String loginErr) {
-		this.loginErr = loginErr;
-	}
+    public void setLoginErr(String loginErr) {
+        this.loginErr = loginErr;
+    }
 
-	
+    
 }

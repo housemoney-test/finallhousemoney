@@ -15,10 +15,11 @@ public class CreatePostService{
     private PostMapper postMapper;
     
     @Transactional
-    public int create(CreatePostForm form) {
+    public void create(CreatePostForm form) {
         Post entity = new Post();
         entity.setTitle(form.getTitle());;
         entity.setBody(form.getBody());
-        return postMapper.create(entity);
+        entity.setUser_id(form.getUser_id());
+        postMapper.create(entity);
     }
 }

@@ -29,18 +29,11 @@ public class LoginUserService {
 		User user = new User();
 		user.setName(userForm.getName());
 		user.setPassword(userForm.getPassword());
-	
-	return user;
-	}
-	
-	public User setUserLogin(UserForm userForm) {
-		User user = new User();
-		user.setName(userForm.getName());
-		user.setPassword(userForm.getPassword());
 		user.setLoginErr(userForm.getLoginErr());
+		user = mapper.findByName(user.getName()); // IDをセット
+        userForm.setId(user.getId());
 	
 	return user;
-	
 	}
 
 }

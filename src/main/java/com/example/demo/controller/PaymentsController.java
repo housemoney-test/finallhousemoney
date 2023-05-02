@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.entity.FixedCost;
 import com.example.demo.entity.Spending;
 import com.example.demo.entity.User;
+import com.example.demo.form.CreateFixedCostForm;
 import com.example.demo.form.CreateSpendingForm;
 import com.example.demo.form.EditFixedCostForm;
 import com.example.demo.form.EditSpendingForm;
 import com.example.demo.form.EditUserForm;
+import com.example.demo.service.CreateFixedCostService;
 import com.example.demo.service.CreateSpendingService;
 import com.example.demo.service.DeleteSpendingService;
 import com.example.demo.service.EditFixedCostService;
@@ -63,8 +65,8 @@ public class PaymentsController {
 	@Autowired
 	private GetAllFixedCostsService getAllFixedCostsService;
 	
-//	@Autowired
-//	private CreateFixedCostService createFixedCostService;
+	@Autowired
+	private CreateFixedCostService createFixedCostService;
 //	
 	@Autowired
 	private FindUserService findUserService;
@@ -172,28 +174,28 @@ public class PaymentsController {
 		return "redirect:/users/index";
 	}
 	
-//	@GetMapping("/fixed")
-//	public String createFixedCost(Model model) {
-//		model.addAttribute("createFixedCostForm", new CreateFixedCostForm());
-//		return "payments/create";
-//	}
-//	
-//	@PostMapping("/fixed")
-//	public String createFixedCost(@Valid @ModelAttribute("createFixedCost") CreateFixedCostForm createFixedCostForm, BindingResult result, Model model) {
-//		if (result.hasErrors()) {
-//	        List<String> errorList = new ArrayList<String>();
-//            for (ObjectError error : result.getAllErrors()) {
-//                errorList.add(error.getDefaultMessage());
-//            }
-//            model.addAttribute("validationError", errorList);
-//			model.addAttribute("createFixedCostForm", createFixedCostForm);
-//			return "payments/fixed";
-//		}
-//		createFixedCostService.createFixedCost(createFixedCostForm);
-//		return "payments/fixed";
-//	}
-	
 	@GetMapping("/fixed")
+	public String createFixedCost(Model model) {
+		model.addAttribute("createFixedCostForm", new CreateFixedCostForm());
+		return "payments/fixed";
+	}
+	
+	@PostMapping("/fixed")
+	public String createFixedCost(@Valid @ModelAttribute("createFixedCost") CreateFixedCostForm createFixedCostForm, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+	        List<String> errorList = new ArrayList<String>();
+            for (ObjectError error : result.getAllErrors()) {
+                errorList.add(error.getDefaultMessage());
+            }
+            model.addAttribute("validationError", errorList);
+			model.addAttribute("createFixedCostForm", createFixedCostForm);
+			return "redirect:payments/fixed";
+		}
+		createFixedCostService.createFixedCost(createFixedCostForm);
+		return "redirect:payments/fixed";
+	}
+	
+	@GetMapping("/fixed_edit")
 	public String edit(@RequestParam int id, EditFixedCostForm editFixedCostForm, Model model) {
 		
 		List<FixedCost> fixedCosts = getAllFixedCostsService.getAllFixedCosts();
@@ -210,7 +212,7 @@ public class PaymentsController {
 		return "payments/fixedEdit";
 	}
 	
-	@PostMapping("/fixed")
+	@PostMapping("/fixed_edit")
 	public String edit(@Valid @ModelAttribute("editFixedForm") EditFixedCostForm editFixedCostForm, BindingResult result, Model model) {
 		List<FixedCost> fixedCosts = getAllFixedCostsService.getAllFixedCosts();
 		if (result.hasErrors()) {
@@ -219,7 +221,7 @@ public class PaymentsController {
         }
 		model.addAttribute("fixedCosts", fixedCosts);
 		editFixedCostService.edit(editFixedCostForm);
-		return "redirect:/users/index";
+		return "redirect:/payments/index";
 	}
 	
 	

@@ -11,36 +11,35 @@
 	<div class="container">
 		<div class="row">
 			<div class="col">
-				<div id="tab-content">
-					<form id="FixedCostForm" th:action="@{/payments/fixed}" th:object="${editFixedCostForm}" th:method="POST">
-						<div th:if="${validationError}" th:each="error : ${validationError}">
-					      <label class="text-danger" th:text="${error}"></label>
-					    </div>
-					    <input type="hidden" th:field="*{id}" th:value="${id}" />
-						<div class="form-row">
-							<label for="title">カテゴリー</label>
-							<select type="text" th:field="*{categoryId}">
-								<option th:value="1">家賃</option>
-								<option th:value="2">生活費</option>
-								<option th:value="3">雑費</option>
-							</select>
-						</div>
+				<h1>固定費編集</h1>
+				<form id="FixedCostForm" th:action="@{/payments/fixed_edit}" th:object="${editFixedCostForm}" th:method="POST">
+					<div th:if="${validationError}" th:each="error : ${validationError}">
+				      <label class="text-danger" th:text="${error}"></label>
+				    </div>
+				    <input type="hidden" th:field="*{id}" th:value="${id}" />
+					<div class="form-row">
+						<label for="title">カテゴリー</label>
+						<select type="text" th:field="*{categoryId}">
+							<option th:value="1">家賃</option>
+							<option th:value="2">生活費</option>
+							<option th:value="3">雑費</option>
+						</select>
+					</div>
+				
+					<div class="form-row">
+						<label for="body">出金額</label>
+						<input type="text" th:field="*{amount}" />
+					</div>
 					
-						<div class="form-row">
-							<label for="body">出金額</label>
-							<input type="text" th:field="*{amount}" />
-						</div>
-						
-						<div class="form-row">
-							<label for="body">ユーザーID</label>
-							<input type="text" th:field="*{userId}" />
-						</div>
-					
-						<div class="form-button">
-							<input type="submit" value="更新">
-						</div>
-					</form>						
-				</div>	
+					<div class="form-row">
+						<label for="body">ユーザーID</label>
+						<input type="text" th:field="*{userId}" />
+					</div>
+				
+					<div class="form-button">
+						<input type="submit" value="更新">
+					</div>
+				</form>						
 				<div class="button-element">
 					<a th:href="@{/users/home}" class="moveButton">ホームに戻る</a>
 					<a th:href="@{/payments/create}" class="moveButton">入出金登録</a>
