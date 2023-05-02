@@ -42,8 +42,11 @@ public class PostsController{
     }
     
     @GetMapping("create")
-    public String post(Model model) {
+    public String post(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        int loginId = user.getId();
         model.addAttribute("form", new CreatePostForm());
+        model.addAttribute("loginId", loginId);
         return "posts/create";
     }
     
