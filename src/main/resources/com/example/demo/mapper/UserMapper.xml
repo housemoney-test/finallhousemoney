@@ -20,6 +20,14 @@
 		WHERE 
 			id = #{id}
 	</select>
+	<select id="findByName" resultType="com.example.demo.entity.User">
+		SELECT
+			*
+		FROM
+			users
+		WHERE
+			name = #{name}
+	</select>
 	<!-- 新規登録 -->
 	<insert id="create">
 		INSERT INTO users(

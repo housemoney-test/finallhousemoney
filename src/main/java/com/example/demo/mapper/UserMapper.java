@@ -16,7 +16,8 @@ public interface UserMapper {
 
 	int editIncome(User user);
 
-	User findById(int id);
+	User findById(Integer id);
+	User findByName(String name);
 	
 
 }
