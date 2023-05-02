@@ -5,5 +5,5 @@ import com.example.demo.entity.Post;
 
 @Mapper
 public interface PostMapper {
-    int create(Post entity);
+    void create(Post entity);
 }

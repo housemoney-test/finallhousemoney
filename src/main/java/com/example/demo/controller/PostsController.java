@@ -50,6 +50,6 @@ public class PostsController{
     @PostMapping("create")
     public String create(@ModelAttribute("form") CreatePostForm form, Model model) {
         createPostService.create(form);
-        return "redirect:/posts/index";
+        return "redirect:/posts";
     }
 }
