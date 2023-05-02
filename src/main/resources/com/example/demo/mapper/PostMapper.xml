@@ -14,4 +14,20 @@
 		#{body}
 		);
 	</insert>
+	<select id="getAll" resultType="com.example.demo.entity.Post">
+		SELECT
+			user_id,
+			title,
+			body,
+			posts.created_at,
+			posts.updated_at
+		FROM
+			posts
+		INNER JOIN
+			users
+		ON
+			posts.user_id = users.id
+		WHERE
+			users.name = #{name};
+	</select>
 </mapper>
