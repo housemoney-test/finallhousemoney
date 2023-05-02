@@ -12,6 +12,14 @@
 		FROM
 			users
 	</select>
+	<select id="findById" resultType="com.example.demo.entity.User">
+		SELECT
+		 	*
+		FROM
+			users
+		WHERE 
+			id = #{id}
+	</select>
 	<!-- 新規登録 -->
 	<insert id="create">
 		INSERT INTO users(
