@@ -1,114 +1,179 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>FinalHouseMoney | 入出金登録</title>
-<link th:href="@{/css/payments.css}" rel="styleSheet" type="text/css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
-</head>
-<body>
-	<div class="container">
-		<div class="row">
-			<div class="col first-element">
-				<div class="changeButton">
-					<button type="button" id="incomeButton" onclick="clickIncome()">入金</button>
-					<button type="button" id="spendingButton" onclick="clickSpending()">出金</button>
-				</div>
-			
-				<div class="form-body">
-					<form id="incomeForm" th:action="@{/payments/create_income}" th:object="${createIncomeForm}" th:method="POST">
-						<div class="form-row">
-							<label for="title">カテゴリー</label>
-							<input type="text" th:field="*{categoryName}" />
-						</div>
-			
-						<div class="form-row">
-							<label for="body">入金額</label>
-							<input type="text" th:field="*{amount}" />
-						</div>
-						
-						<div class="form-row">
-							<label for="body">ユーザーID</label>
-							<input type="text" th:field="*{userId}" />
-						</div>
-						
-						<div class="form-button">
-							<input type="submit" value="登録">
-						</div>
-					</form>
-			
-					<form id="spendingForm" th:action="@{/payments/create_spending}" th:object="${createSpendingForm}" th:method="POST">
-						<div th:if="${validationError}" th:each="error : ${validationError}">
-					      <label class="text-danger" th:text="${error}"></label>
-					    </div>
-						<div class="form-row">
-							<label for="title">カテゴリー</label>
-							<select type="text" th:field="*{categoryId}">
-								<option th:value="1">食費</option>
-								<option th:value="2">生活費</option>
-								<option th:value="3">雑費</option>
-							</select>
-						</div>
-			
-						<div class="form-row">
-							<label for="body">出金額</label>
-							<input type="text" th:field="*{amount}" />
-						</div>
-						
-						<div class="form-row">
-							<label for="body">ユーザーID</label>
-							<input type="text" th:field="*{userId}" />
-						</div>
-			
-						<div class="form-button">
-							<input type="submit" value="登録">
-						</div>
-					</form>
-				</div>
-				<div class="button-element">
-					<a th:href="@{/users/home}" class="moveButton">ホームに戻る</a>
-				</div>								
-			</div>
-			<div class="col">
-				<form name="calculator">
-				    <table>
-				      <tr>
-				        <td colspan="4">
-				          <input type="text" class="display" name="display" value="" disabled>
-				        </td>
-				      </tr>
-				      <tr>
-				        <td><input type="button" value="7" onclick="get_calc(this)"></td>
-				        <td><input type="button" value="8" onclick="get_calc(this)"></td>
-				        <td><input type="button" value="9" onclick="get_calc(this)"></td>
-				        <td><input type="button" value="÷" class="operator" name="div_btn" onclick="get_calc(this)"></td>
-				      </tr>
-				      <tr>
-				        <td><input type="button" value="4" onclick="get_calc(this)"></td>
-				        <td><input type="button" value="5" onclick="get_calc(this)"></td>
-				        <td><input type="button" value="6" onclick="get_calc(this)"></td>
-				        <td><input type="button" value="×" class="operator" name="multi_btn" onclick="get_calc(this)"></td>
-				      </tr>
-				      <tr>
-				        <td><input type="button" value="1" onclick="get_calc(this)"></td>
-				        <td><input type="button" value="2" onclick="get_calc(this)"></td>
-				        <td><input type="button" value="3" onclick="get_calc(this)"></td>
-				        <td><input type="button" value="-" class="operator" onclick="get_calc(this)"></td>
-				      </tr>
-				      <tr>
-				        <td><input type="button" value="0" onclick="get_calc(this)"></td>
-				        <td><input type="button" value="C" onclick="get_calc(this)"></td>
-				        <td><input type="button" value="=" class="equal" onclick="get_calc(this)"></td>
-				        <td><input type="button" value="+" class="operator" onclick="get_calc(this)"></td>
-				      </tr>
-				    </table>		
-				</form>					
-			</div>			
-		</div>
-	</div>		
 
-	<script type="text/javascript" th:src="@{/js/paymentButton.js}"></script>
-	<script type="text/javascript" th:src="@{/js/calculator.js}"></script>
+<head>
+	<meta charset="UTF-8">
+	<title>FinalHouseMoney | 入出金登録</title>
+	<link th:href="@{/css/payments.css}" rel="styleSheet" type="text/css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+	<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+	<div class="home-design">
+		<div class="frame">
+			<div class="plane-container">
+				<a th:href="@{/payments/create}">
+					<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+						x="0px" y="0px" width="1131.53px" height="379.304px" viewBox="0 0 1131.53 379.304"
+						enable-background="new 0 0 1131.53 379.304" xml:space="preserve" class="plane">
+						<polygon fill="#D8D8D8"
+							points="72.008,0 274.113,140.173 274.113,301.804 390.796,221.102 601.682,367.302 1131.53,0.223  " />
+						<polygon fill="#C4C4C3"
+							points="1131.53,0.223 274.113,140.173 274.113,301.804 390.796,221.102   " />
+					</svg></a>
+
+			</div>
+		</div>
+		<div class="clouds">
+
+			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+				y="0px" width="762px" height="331px" viewBox="0 0 762 331" enable-background="new 0 0 762 331"
+				xml:space="preserve" class="cloud big front slowest">
+				<path fill="#FFFFFF" d="M715.394,228h-16.595c0.79-5.219,1.201-10.562,1.201-16c0-58.542-47.458-106-106-106
+						c-8.198,0-16.178,0.932-23.841,2.693C548.279,45.434,488.199,0,417.5,0c-84.827,0-154.374,65.401-160.98,148.529
+						C245.15,143.684,232.639,141,219.5,141c-49.667,0-90.381,38.315-94.204,87H46.607C20.866,228,0,251.058,0,279.5
+						S20.866,331,46.607,331h668.787C741.133,331,762,307.942,762,279.5S741.133,228,715.394,228z" />
+			</svg>
+			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+				y="0px" width="762px" height="331px" viewBox="0 0 762 331" enable-background="new 0 0 762 331"
+				xml:space="preserve" class="cloud distant smaller">
+				<path fill="#FFFFFF" d="M715.394,228h-16.595c0.79-5.219,1.201-10.562,1.201-16c0-58.542-47.458-106-106-106
+						c-8.198,0-16.178,0.932-23.841,2.693C548.279,45.434,488.199,0,417.5,0c-84.827,0-154.374,65.401-160.98,148.529
+						C245.15,143.684,232.639,141,219.5,141c-49.667,0-90.381,38.315-94.204,87H46.607C20.866,228,0,251.058,0,279.5
+						S20.866,331,46.607,331h668.787C741.133,331,762,307.942,762,279.5S741.133,228,715.394,228z" />
+			</svg>
+
+			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+				y="0px" width="762px" height="331px" viewBox="0 0 762 331" enable-background="new 0 0 762 331"
+				xml:space="preserve" class="cloud small slow">
+				<path fill="#FFFFFF" d="M715.394,228h-16.595c0.79-5.219,1.201-10.562,1.201-16c0-58.542-47.458-106-106-106
+						c-8.198,0-16.178,0.932-23.841,2.693C548.279,45.434,488.199,0,417.5,0c-84.827,0-154.374,65.401-160.98,148.529
+						C245.15,143.684,232.639,141,219.5,141c-49.667,0-90.381,38.315-94.204,87H46.607C20.866,228,0,251.058,0,279.5
+						S20.866,331,46.607,331h668.787C741.133,331,762,307.942,762,279.5S741.133,228,715.394,228z" />
+			</svg>
+
+			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+				y="0px" width="762px" height="331px" viewBox="0 0 762 331" enable-background="new 0 0 762 331"
+				xml:space="preserve" class="cloud distant super-slow massive">
+				<path fill="#FFFFFF" d="M715.394,228h-16.595c0.79-5.219,1.201-10.562,1.201-16c0-58.542-47.458-106-106-106
+						c-8.198,0-16.178,0.932-23.841,2.693C548.279,45.434,488.199,0,417.5,0c-84.827,0-154.374,65.401-160.98,148.529
+						C245.15,143.684,232.639,141,219.5,141c-49.667,0-90.381,38.315-94.204,87H46.607C20.866,228,0,251.058,0,279.5
+						S20.866,331,46.607,331h668.787C741.133,331,762,307.942,762,279.5S741.133,228,715.394,228z" />
+			</svg>
+
+			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+				y="0px" width="762px" height="331px" viewBox="0 0 762 331" enable-background="new 0 0 762 331"
+				xml:space="preserve" class="cloud slower">
+				<path fill="#FFFFFF" d="M715.394,228h-16.595c0.79-5.219,1.201-10.562,1.201-16c0-58.542-47.458-106-106-106
+						c-8.198,0-16.178,0.932-23.841,2.693C548.279,45.434,488.199,0,417.5,0c-84.827,0-154.374,65.401-160.98,148.529
+						C245.15,143.684,232.639,141,219.5,141c-49.667,0-90.381,38.315-94.204,87H46.607C20.866,228,0,251.058,0,279.5
+						S20.866,331,46.607,331h668.787C741.133,331,762,307.942,762,279.5S741.133,228,715.394,228z" />
+			</svg>
+			<p class="mt-5 text-center sample">～入出金登録ページ～</p>
+			<div class="container">
+				<div class="row">
+					<div class="col-6 mt-5">
+						<div class="row">
+							<button type="button" id="incomeButton" onclick="clickIncome()"
+								class="col-5 mb-4 btn_18">入金</button>
+							<button type="button" id="spendingButton" onclick="clickSpending()"
+								class="col-5 mb-4 btn_18">出金</button>
+						</div>
+						<div class="form-body">
+							<form id="incomeForm" class="mt-4">
+
+								<div class="form-row">
+									<label class="col-4 font" for="body"
+										style="text-align: right; font-size:40px;">にゅうきん:</label>
+									<input class="textbox" type="text" placeholder="入金額いれろよ" />
+								</div>
+
+								<div class="row mt-4" style="text-align: right;">
+									<div class="form-button col-12">
+										<button class="custom-btn btn-3" type="submit"><span>Submit</span></button>
+									</div>
+								</div>
+							</form>
+
+							<form id="spendingForm" th:action="@{/payments/create}" th:object="${form}"
+								th:method="POST">
+								<div th:if="${validationError}" th:each="error : ${validationError}">
+									<label class="text-danger" th:text="${error}"></label>
+								</div>
+								<div class="form-row mb-4 mt-4">
+									<label class="col-4 font" for="body"
+										style="text-align: right; font-size:40px;">カテゴリ:</label>
+									<select type="text" th:field="*{categoryId}" class="textbox">
+										<option th:value="1">食費</option>
+										<option th:value="2">生活費</option>
+										<option th:value="3">雑費</option>
+									</select>
+								</div>
+
+								<div class="form-row">
+									<label class="col-4 font" for="body"
+										style="text-align: right; font-size:40px;">しゅっきん:</label>
+									<input class="textbox" type="text" placeholder="払った額いれろよ" />
+								</div>
+								<input type="hidden" th:field="*{userId}" th:value="${id}" />
+
+								<div class="form-button mt-5" style="text-align: right;">
+									<button class="custom-btn btn-3" type="submit"><span>Submit</span></button>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="col-6 mt-5" style="display: flex; justify-content: center;">
+						<form name="calculator">
+							<table>
+								<tr>
+									<td colspan="4">
+										<input type="text" class="display" name="display" value="" disabled>
+									</td>
+								</tr>
+								<tr>
+									<td><input type="button" value="7" onclick="get_calc(this)"></td>
+									<td><input type="button" value="8" onclick="get_calc(this)"></td>
+									<td><input type="button" value="9" onclick="get_calc(this)"></td>
+									<td><input type="button" value="÷" class="operator" name="div_btn"
+											onclick="get_calc(this)">
+									</td>
+								</tr>
+								<tr>
+									<td><input type="button" value="4" onclick="get_calc(this)"></td>
+									<td><input type="button" value="5" onclick="get_calc(this)"></td>
+									<td><input type="button" value="6" onclick="get_calc(this)"></td>
+									<td><input type="button" value="×" class="operator" name="multi_btn"
+											onclick="get_calc(this)"></td>
+								</tr>
+								<tr>
+									<td><input type="button" value="1" onclick="get_calc(this)"></td>
+									<td><input type="button" value="2" onclick="get_calc(this)"></td>
+									<td><input type="button" value="3" onclick="get_calc(this)"></td>
+									<td><input type="button" value="-" class="operator" onclick="get_calc(this)"></td>
+								</tr>
+								<tr>
+									<td><input type="button" value="0" onclick="get_calc(this)"></td>
+									<td><input type="button" value="C" onclick="get_calc(this)"></td>
+									<td><input type="button" value="=" class="equal" onclick="get_calc(this)"></td>
+									<td><input type="button" value="+" class="operator" onclick="get_calc(this)"></td>
+								</tr>
+							</table>
+						</form>
+					</div>
+					<div class="button_solid011">
+						<a th:href="@{/users/home}">
+							<span>HOME</span>
+							戻る
+						</a>
+					</div>
+
+				</div>
+			</div>
+
+			<script type="text/javascript" th:src="@{/js/paymentButton.js}"></script>
+			<script type="text/javascript" th:src="@{/js/calculator.js}"></script>
 </body>
+
 </html>

@@ -10,32 +10,31 @@
 .upperPart {
 	position: relative;
 	height: 50px;
+	margin-bottom: 5em;
 }
 .moveButton {
 	float: right;
-	font-size: 1rem;
-	font-weight: 700;
-	line-height: 1.5;
-	position: relative;
-	padding: 1rem 2rem;
-	user-select: none;
-	text-align: center;
-	vertical-align: middle;
+	padding: 0.5em 1em;
+	margin-left: 1em;
 	text-decoration: none;
-	letter-spacing: 0.1em;
-	border-radius: 0.5rem;
-	color: black;
-	background-color: #EDFFBE;
+	background: #FF9900;
+  	color: #FFF;
+	border-bottom: solid 4px #627295;
+	border-radius: 3px;
+}
+.moveButton:hover {
+	color: #fff;
+	transform: translateY(-5px);
 }
 .htmlTitle {
 	text-align: center;	
 }
 
-/*index.html*/
+/*calender*/
 .todayPayment {
 	float: left;
 }
-#calendarHeader {
+.indexHeader {
     text-align: center;
     font-size: 24px;
     width: 100%;
@@ -45,30 +44,30 @@
     text-align: center;
     width: 100%;
 }
-table {
+table.calendar {
     outline: 2px solid #ddd;
     border-collapse: collapse;
     width: 100%;
 }
-th {
+table.calendar th {
     color: #000;
 }
-th, td {
+table.calendar th, table.calendar td {
     outline: 1px solid #ddd;
     padding-top: 10px;
     padding-bottom: 10px;
     text-align: center;
 }
-td:first-child {
+table.calendar td:first-child {
     color: red;
 }
-td:last-child {
+table.calendar td:last-child {
     color: blue;
 }
-td.disabled {
+table.calendar td.disabled {
     color: #ccc;
 }
-td.today {
+table.calendar td.today {
     background-color: #D65E72;
     color: #fff;
 }
@@ -89,6 +88,13 @@ td.today {
 }
 #next {
     float: right;
+}
+
+/*post一覧*/
+table.posts {
+	width: 80%;
+	margin: 1em auto;
+	text-align: center;
 }
 
 /*form*/
