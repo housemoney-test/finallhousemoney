@@ -32,8 +32,12 @@ public class PostsController{
         User user = (User) session.getAttribute("user");
         String name = user.getName(); 
         User spendingUser = getTodaySpendingService.getTodaySpending(name);
+        if(spendingUser != null) {
         int amount = spendingUser.getDaySpending();
         model.addAttribute("amount",amount);
+        } else {
+            model.addAttribute("amount",0);
+        }
         return "posts/index";
     }
     
