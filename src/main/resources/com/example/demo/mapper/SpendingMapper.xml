@@ -6,11 +6,12 @@
 	<select id="findAll" resultType="com.example.demo.entity.Spending">
 		SELECT
 			spendings.id AS id,
-			category_id,
+			category_id AS categoryId,
 			amount,
 	<!--			spending_categories.id AS category_id,-->
 	<!--			spending_categories.category_name AS category_name,-->
-			user_id
+			user_id AS userId,
+			created_at AS createdAt
 		FROM
 			spendings
 	<!--		INNER JOIN spending_categories ON spending.category_id = spending_categories.id-->

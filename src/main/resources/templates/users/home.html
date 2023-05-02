@@ -101,16 +101,10 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td>
-									<p>2023/05/01</p>
-								</td>
-								<td>
-									<p>10,000,000円</p>
-								</td>
-								<td>
-									<p>テストテストテスト</p>
-								</td>
-								<td><a th:href="@{/users/incomeEdit}"><button class="btn btn-sm btn-primary text-white">編集</button></a></td>
+								<td th:text="${user.createdAt}"></td>
+								<td th:text="${user.amount}"></td>
+								<a th:href="@{/users/incomeEdit}">
+									<button class="btn btn-sm btn-primary text-white">編集</button></a></td>
 							</tr>
 						</tbody>
 					</table>
@@ -126,16 +120,10 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td>
-									<p>2023/05/01</p>
-								</td>
-								<td>
-									<p>10,000,000円</p>
-								</td>
-								<td>
-									<p>テストテストテスト</p>
-								</td>
-								<td><a th:href="@{/users/paymentsEdit}"><button class="btn btn-sm btn-primary">編集</button></a></td>
+								<td th:text="${user.createdAt}"></td>
+								<td th:text="${user.amount}"></td>
+								<td><a th:href="@{/users/paymentsEdit}"><button
+											class="btn btn-sm btn-primary">編集</button></a></td>
 							</tr>
 						</tbody>
 					</table>
@@ -159,7 +147,9 @@
 								<span th:text="${session.user.id}" class="col-5">ID</span>
 							</div>
 							<div class="row">
-								<td><button><a th:href="@{/logout}" class="btn btn-sm btn-primary text-white">ログアウト</a></buttonbutton></td>
+								<td><button><a th:href="@{/logout}" class="btn btn-sm btn-primary text-white">ログアウト</a>
+										</buttonbutton>
+								</td>
 							</div>
 						</div>
 					</div>

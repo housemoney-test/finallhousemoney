@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demo.entity.User;
 import com.example.demo.form.CreateUserForm;
 import com.example.demo.form.LoginUserForm;
+import com.example.demo.service.EditPaymentsService;
 import com.example.demo.service.GetAllUsersService;
 
 import jakarta.servlet.http.HttpSession;
@@ -25,6 +26,10 @@ public class UsersController {
 
 	@Autowired
 	private GetAllUsersService getAllUsersService;
+	
+	@Autowired
+	private EditPaymentsService editPaymentsService;
+
 
 	@GetMapping("/index")
 	public String index(Model model) {
@@ -67,10 +72,11 @@ public class UsersController {
 
 		}
 	
+	//出金一覧情報を書く
 	@GetMapping("/paymentsEdit")
 	public String paymentsEdit(Model model, HttpSession session) {
 		 User user = (User) session.getAttribute("user");
-			
+//		 List<User> payments= editPaymentsService.getFindById(user.getId());	
 		model.addAttribute("user", user);
 			return "users/paymentsEdit";
 
